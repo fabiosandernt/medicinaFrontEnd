@@ -93,7 +93,8 @@
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "node_modules/ngx-toastr/toastr.css",
               "src/assets/scss/now-ui-dashboard.scss",
-              "src/assets/demo/demo.css"
+              "src/assets/demo/demo.css",
+              "src/assets/scss/now-ui-kit.scss"
             ],
             "assets": [
               "src/assets",
@@ -141,7 +142,7 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "styleext": "scss"
+      "style": "css"
     },
     "@schematics/angular:directive": {
       "prefix": "app"

@@ -7,6 +7,13 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
+import { IconsComponent } from './template/icons/icons.component';
+import { UserProfileComponent } from './template/user-profile/user-profile.component';
+import { TableListComponent } from './template/table-list/table-list.component';
+import { TypographyComponent } from './template/typography/typography.component';
+import { MapsComponent } from './template/maps/maps.component';
+import { NotificationsComponent } from './template/notifications/notifications.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -16,12 +23,26 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   declarations: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    UserProfileComponent,
+    TableListComponent,
+    TypographyComponent,
+    IconsComponent,
+    MapsComponent,
+    NotificationsComponent,
+    IconsComponent,
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    UserProfileComponent,
+    TableListComponent,
+    TypographyComponent,
+    IconsComponent,
+    MapsComponent,
+    NotificationsComponent,
+    IconsComponent,
   ]
 })
 export class ComponentsModule { }
