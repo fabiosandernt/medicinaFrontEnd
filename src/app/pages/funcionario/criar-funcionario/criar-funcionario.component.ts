@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    selector: 'app-criar-empresa',
-    templateUrl: './criar-empresa.component.html',
-    styleUrls: ['./criar-empresa.component.css']
+  selector: 'app-criar-funcionario',
+  templateUrl: './criar-funcionario.component.html',
+  styleUrls: ['./criar-funcionario.component.css']
 })
-export class ComponenteCriarEmpresa implements OnInit {
+export class ComponenteCriarFuncionario implements OnInit {
     closeResult: string;
+    tipoExame: any
 
-    constructor(private modalService: NgbModal) {}
+    model: NgbDateStruct;
 
+    constructor(private modalService: NgbModal) { }
     ngOnInit(): void {}
 
     open(content: any) {
@@ -31,5 +33,10 @@ export class ComponenteCriarEmpresa implements OnInit {
         } else {
             return  `with: ${reason}`;
         }
+    }
+
+    public alterarTipo(e: any) {
+        this.tipoExame = e.target.value;
+        console.log(this.tipoExame);
     }
 }

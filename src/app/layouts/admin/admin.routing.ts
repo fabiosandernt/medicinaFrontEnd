@@ -4,18 +4,16 @@ import { ComponenteListarEmpresa } from '../../pages/empresa/listar-empresa/list
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { ComponenteCriarEmpresa } from '../../pages/empresa/criar-empresa/criar-empresa.component';
 import { ComponenteListarUsuario } from '../../pages/usuario/listar-usuario/listar-usuario.component';
+import { ComponenteListarFuncionario } from '../../pages/funcionario/listar-funcionario/listar-funcionario.component';
+import { ComponenteCriarFuncionario } from '../../pages/funcionario/criar-funcionario/criar-funcionario.component';
+import { ComponenteCriarUsuario } from '../../pages/usuario/criar-usuario/criar-usuario.component';
 
 export const AdminRoutes: Routes = [
     { path: 'dashboard',            component: DashboardComponent },
     { path: 'empresa/listar',       component: ComponenteListarEmpresa },
     { path: 'empresa/criar',        component: ComponenteCriarEmpresa },
-    { path: 'usuario/listar',        component: ComponenteListarUsuario },
-
-    //{ path: 'user-profile',   component: UserProfileComponent },
-    //{ path: 'table-list',     component: TableListComponent },
-    //{ path: 'typography',     component: TypographyComponent },
-    //{ path: 'icons',          component: IconsComponent },
-    //{ path: 'maps',           component: MapsComponent },
-    //{ path: 'notifications',  component: NotificationsComponent },
-    //{ path: 'upgrade',        component: UpgradeComponent }
+    { path: 'usuario/listar',       component: ComponenteListarUsuario },
+    { path: 'usuario/criar',        component: ComponenteCriarUsuario },
+    { path: 'funcionario/listar',   component: ComponenteListarFuncionario },
+    { path: 'funcionario/criar',    component: ComponenteCriarFuncionario },
 ];

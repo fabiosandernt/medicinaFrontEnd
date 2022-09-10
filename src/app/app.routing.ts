@@ -15,25 +15,25 @@ const routes: Routes =[
     {
         path: '',
         component: AdminComponent,
-        children: [
-        {
-            path: '',
-            loadChildren: () => import('./layouts/admin/admin.module').then(x => x.AdminModule)
-        }]
+        children:
+        [
+            {
+                path: '',
+                loadChildren: () => import('./layouts/admin/admin.module').then(x => x.AdminModule)
+            }
+        ]
     },
     {
         path: 'auth',
         component: AuthComponent,
-        children: [
-        {
-            path: '',
-            loadChildren: () => import('./layouts/auth/auth.module').then(x => x.AuthModule)
-        }]
+        children:
+        [
+            {
+                path: '',
+                loadChildren: () => import('./layouts/auth/auth.module').then(x => x.AuthModule)
+            }
+        ]
     },
-    {
-        path: '**',
-        redirectTo: 'dashboard'
-    }
 ];
 
 @NgModule({

@@ -13,36 +13,42 @@ import { TableListComponent } from './template/table-list/table-list.component';
 import { TypographyComponent } from './template/typography/typography.component';
 import { MapsComponent } from './template/maps/maps.component';
 import { NotificationsComponent } from './template/notifications/notifications.component';
+import { ComponenteModalCancel } from './modals/modal-cancel/modal-cancel.component';
+import { ComponenteModalConfirm } from './modals/modal-confirm/modal-confirm.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    NgbModule
-  ],
-  declarations: [
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent,
-    UserProfileComponent,
-    TableListComponent,
-    TypographyComponent,
-    IconsComponent,
-    MapsComponent,
-    NotificationsComponent,
-    IconsComponent,
-  ],
-  exports: [
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent,
-    UserProfileComponent,
-    TableListComponent,
-    TypographyComponent,
-    IconsComponent,
-    MapsComponent,
-    NotificationsComponent,
-    IconsComponent,
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        NgbModule
+    ],
+    declarations: [
+        FooterComponent,
+        NavbarComponent,
+        SidebarComponent,
+        UserProfileComponent,
+        TableListComponent,
+        TypographyComponent,
+        IconsComponent,
+        MapsComponent,
+        NotificationsComponent,
+        IconsComponent,
+        ComponenteModalCancel,
+        ComponenteModalConfirm
+    ],
+    exports: [
+        FooterComponent,
+        NavbarComponent,
+        SidebarComponent,
+        UserProfileComponent,
+        TableListComponent,
+        TypographyComponent,
+        IconsComponent,
+        MapsComponent,
+        NotificationsComponent,
+        IconsComponent,
+        ComponenteModalCancel,
+        ComponenteModalConfirm
+    ]
 })
 export class ComponentsModule { }

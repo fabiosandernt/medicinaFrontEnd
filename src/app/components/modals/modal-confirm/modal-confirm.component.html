@@ -1,0 +1,14 @@
+<ng-template #modal_mini_confirm let-c="close" let-d="dismiss">
+    <div class="modal-header justify-content-center">
+        <div class="modal-profile">
+            <i class="now-ui-icons ui-1_check"></i>
+        </div>
+    </div>
+    <div class="modal-body">
+        <p> Deseja realmente salvar? Está ação não poderá ser desfeita.
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-link btn-neutral" (click)="('Close click')" > Voltar </button>
+        <button type="button" class="btn btn-link btn-neutral" (click)="c('Close click')"> Continuar </button>
+    </div>
+</ng-template>

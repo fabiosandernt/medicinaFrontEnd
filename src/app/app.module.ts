@@ -7,13 +7,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app.routing';
-import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
 
 import { AdminComponent } from './layouts/admin/admin.component';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { CommonModule } from '@angular/common';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
     imports: [
@@ -30,7 +30,7 @@ import { CommonModule } from '@angular/common';
     declarations: [
         AppComponent,
         AdminComponent,
-        AuthComponent,
+        AuthComponent
     ],
     providers: [],
     bootstrap: [AppComponent]
