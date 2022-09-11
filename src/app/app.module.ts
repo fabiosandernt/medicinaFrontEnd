@@ -14,6 +14,9 @@ import { AdminComponent } from './layouts/admin/admin.component';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { CommonModule } from '@angular/common';
 import { ComponentsModule } from './components/components.module';
+import { IConfig, NgxMaskModule } from 'ngx-mask'
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
     imports: [
@@ -25,7 +28,8 @@ import { ComponentsModule } from './components/components.module';
         AppRoutingModule,
         NgbModule,
         ToastrModule.forRoot(),
-        CommonModule
+        CommonModule,
+        NgxMaskModule.forRoot(),
     ],
     declarations: [
         AppComponent,

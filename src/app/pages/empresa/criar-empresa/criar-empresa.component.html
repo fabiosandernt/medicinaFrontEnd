@@ -6,34 +6,42 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="title">Adicionar Empresa</h5>
-                    <button class="btn btn-primary btn-simple btn-round" type="button" (click)="open(modal_mini_cancel)"> Cancelar </button>
+                    <button class="btn btn-primary btn-simple btn-round" type="button"> Cancelar </button>
                 </div>
 
                 <div class="card-body">
-                    <form>
+                    <form [formGroup]="form">
                         <div class="row">
                             <div class="col-md-3 pr-md-3">
-                                <div class="form-group">
+                                <div class="form-group" [class.has-danger]="form.controls.cnpj?.errors?.required && form.dirty">
                                     <label> CNPJ </label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        [class.form-control-danger]="form.controls.cnpj?.errors?.required && form.dirty"
+                                        placeholder=""
+                                        mask="00.000.000/0000-00"
+                                        minlength="18"
+                                        formControlName="cnpj"
+                                    >
                                 </div>
                             </div>
                             <div class="col-md-3 pl-1">
                                 <div class="form-group">
                                     <label> Razão Social </label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" placeholder="" formControlName="razaoSocial">
                                 </div>
                             </div>
                             <div class="col-md-3 pl-1">
                                 <div class="form-group">
                                     <label> Celular </label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" placeholder="" mask="(00) 0 0000-0000" minlength="16" formControlName="celular">
                                 </div>
                             </div>
                             <div class="col-md-3 pl-1">
                                 <div class="form-group">
                                     <label> Telefone </label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" placeholder="" mask="(00) 0000-0000" minlength="14" formControlName="telefone">
                                 </div>
                             </div>
                         </div>
@@ -42,14 +50,14 @@
                             <div class="col-md-6 pr-1">
                                 <div class="form-group">
                                     <label> Endereço </label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" placeholder="" maxlength="50" formControlName="endereco">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group has-success">
                                     <label for="email"> Email </label>
-                                    <input type="email" class="form-control form-control-success" placeholder="">
+                                    <input type="email" class="form-control form-control-success" placeholder="" email maxlength="50" formControlName="email">
                                 </div>
                             </div>
                         </div>
@@ -57,14 +65,14 @@
                 </div>
 
                 <div class="card-footer">
-                    <button class="btn btn-primary btn-round" type="button" (click)="open(modal_mini_confirm)"> Salvar </button>
+                    <button class="btn btn-primary btn-round" type="button" [disabled]="!form.valid"> Salvar </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<ng-template #modal_mini_cancel let-c="close" let-d="dismiss">
+<ng-template #modal_mini_cancel let-modal>
     <div class="modal-header justify-content-center">
         <div class="modal-profile">
             <i class="now-ui-icons ui-1_simple-remove"></i>
@@ -74,12 +82,12 @@
         <p> Deseja realmente sair? Todos os dados não salvos, serão perdidos.
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-link btn-neutral"> Voltar </button>
-        <button type="button" class="btn btn-link btn-neutral" (click)="c('Close click')"> Continuar </button>
+        <button type="button" class="btn btn-round" (click)="modal.close('Close click')"> Voltar </button>
+        <button type="button" class="btn btn-round" (click)="modal.close('Save click')"> Continuar </button>
     </div>
 </ng-template>
 
-<ng-template #modal_mini_confirm let-c="close" let-d="dismiss">
+<ng-template #modal_mini_confirm let-modal>
     <div class="modal-header justify-content-center">
         <div class="modal-profile">
             <i class="now-ui-icons ui-1_check"></i>
@@ -89,8 +97,8 @@
         <p> Deseja realmente salvar? Está ação não poderá ser desfeita.
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-link btn-neutral" (click)="('Close click')" > Voltar </button>
-        <button type="button" class="btn btn-link btn-neutral" (click)="c('Close click')"> Continuar </button>
+        <button type="button" class="btn btn-link btn-neutral" (click)="modal.close('Close click')" > Voltar </button>
+        <button type="button" class="btn btn-link btn-neutral" (click)="modal.close('Save click')"> Continuar </button>
     </div>
 </ng-template>
 

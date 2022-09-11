@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminRoutes } from './admin.routing';
 import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -14,15 +14,20 @@ import { ComponenteCriarUsuario } from '../../pages/usuario/criar-usuario/criar-
 import { ComponenteCriarFuncionario } from '../../pages/funcionario/criar-funcionario/criar-funcionario.component';
 import { ComponenteListarFuncionario } from '../../pages/funcionario/listar-funcionario/listar-funcionario.component';
 import { ComponenteCriarEmpresa } from '../../pages/empresa/criar-empresa/criar-empresa.component';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule.forChild(AdminRoutes),
         FormsModule,
+        ReactiveFormsModule,
         ChartsModule,
         NgbModule,
         ToastrModule.forRoot(),
+        NgxMaskModule.forRoot(),
     ],
     declarations: [
         DashboardComponent,
