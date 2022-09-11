@@ -27,6 +27,13 @@ export const ROUTES: RouteInfo[] = [
         pathSubItem: '/funcionario/criar',
         idMenu: true
     },
+    {
+        path: '/aso/criar',
+        title: 'ASO',
+        icon: 'files_paper',
+        class: '',
+        idMenu: true
+    },
     /*{ path: '/icons', title: 'Icons',  icon:'education_atom', class: '' },
     { path: '/maps', title: 'Maps',  icon:'location_map-big', class: '' },
     { path: '/notifications', title: 'Notifications',  icon:'ui-1_bell-53', class: '' },

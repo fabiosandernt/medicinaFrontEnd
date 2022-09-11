@@ -14,6 +14,7 @@ import { ComponenteCriarUsuario } from '../../pages/usuario/criar-usuario/criar-
 import { ComponenteCriarFuncionario } from '../../pages/funcionario/criar-funcionario/criar-funcionario.component';
 import { ComponenteListarFuncionario } from '../../pages/funcionario/listar-funcionario/listar-funcionario.component';
 import { ComponenteCriarEmpresa } from '../../pages/empresa/criar-empresa/criar-empresa.component';
+import { ComponenteCriarASO } from '../../pages/aso/criar-aso/criar-aso.component';
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import { ComponenteCriarEmpresa } from '../../pages/empresa/criar-empresa/criar-
         ComponenteListarUsuario,
         ComponenteCriarFuncionario,
         ComponenteListarFuncionario,
-        ComponenteCriarUsuario
+        ComponenteCriarUsuario,
+        ComponenteCriarASO
     ]
 })
 

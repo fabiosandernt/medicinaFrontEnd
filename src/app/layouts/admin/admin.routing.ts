@@ -7,6 +7,7 @@ import { ComponenteListarUsuario } from '../../pages/usuario/listar-usuario/list
 import { ComponenteListarFuncionario } from '../../pages/funcionario/listar-funcionario/listar-funcionario.component';
 import { ComponenteCriarFuncionario } from '../../pages/funcionario/criar-funcionario/criar-funcionario.component';
 import { ComponenteCriarUsuario } from '../../pages/usuario/criar-usuario/criar-usuario.component';
+import { ComponenteCriarASO } from '../../pages/aso/criar-aso/criar-aso.component';
 
 export const AdminRoutes: Routes = [
     { path: 'dashboard',            component: DashboardComponent },
@@ -16,4 +17,5 @@ export const AdminRoutes: Routes = [
     { path: 'usuario/criar',        component: ComponenteCriarUsuario },
     { path: 'funcionario/listar',   component: ComponenteListarFuncionario },
     { path: 'funcionario/criar',    component: ComponenteCriarFuncionario },
+    { path: 'aso/criar',    component: ComponenteCriarASO },
 ];

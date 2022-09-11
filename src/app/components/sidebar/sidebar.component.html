@@ -12,7 +12,7 @@
                 <p>{{ menuItem.title }}</p>
             </a>
             <ul routerLinkActive="active" #collapse="ngbCollapse" [(ngbCollapse)]="menuItem.idMenu">
-                <a [routerLink]="[menuItem.pathSubItem]">
+                <a [routerLink]="[menuItem.pathSubItem]" *ngIf="menuItem.pathSubItem != null">
                     <i class="now-ui-icons ui-1_simple-add"></i>
                     <p style="color: #fff;"> Adicionar novo </p>
                 </a>
