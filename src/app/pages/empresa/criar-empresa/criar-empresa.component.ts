@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -12,18 +12,23 @@ export class ComponenteCriarEmpresa implements OnInit {
     form: FormGroup;
     empresa: any;
 
-    constructor(private modalService: NgbModal, private formBuilder: FormBuilder) {}
+    constructor(
+        private modalService: NgbModal,
+        private formBuilder: FormBuilder
+    ) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.initForm()
+    }
 
     initForm() {
         this.form = this.formBuilder.group({
-            cnpj: [this.empresa?.cnpj],
-            razaoSocial: [this.empresa?.razaoSocial],
-            celular: [this.empresa?.celular],
-            telefone: [this.empresa?.telefone],
-            endereco: [this.empresa?.endereco],
-            email: [this.empresa?.email],
+            cnpj: [this.empresa?.cnpj, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
+            razaoSocial: [this.empresa?.razaoSocial, [Validators.required]],
+            celular: [this.empresa?.celular, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
+            telefone: [this.empresa?.telefone, [Validators.maxLength(9)]],
+            endereco: [this.empresa?.endereco, [Validators.maxLength(50)]],
+            email: [this.empresa?.email, [Validators.required, Validators.pattern("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+).(\.[a-z]{2,3})$"), Validators.maxLength(50)]],
         });
     }
 

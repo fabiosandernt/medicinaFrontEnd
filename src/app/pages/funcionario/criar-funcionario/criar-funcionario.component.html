@@ -9,41 +9,61 @@
                     <button class="btn btn-primary btn-simple btn-round" type="button"> Cancelar </button>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form [formGroup]="form">
                         <div class="row">
                             <div class="col-md-3 pr-md-3">
-                                <div class="form-group">
+                                <div class="form-group"
+                                    [ngClass]="
+                                    form.controls.nome?.errors?.required ||
+                                    form.controls.nome?.errors?.maxlength &&
+                                    form.dirty ? 'has-danger' : 'has-success'"
+                                >
                                     <label> Nome </label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" placeholder="" maxlength="50" formControlName="nome">
                                 </div>
                             </div>
                             <div class="col-md-3 pl-1">
-                                <div class="form-group">
+                                <div class="form-group"
+                                    [ngClass]="
+                                    form.controls.cpf?.errors?.required ||
+                                    form.controls.cpf?.errors?.minlength ||
+                                    form.controls.cpf?.errors?.maxlength &&
+                                    form.dirty ? 'has-danger' : 'has-success'"
+                                >
                                     <label> CPF </label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" formControlName="cpf" placeholder="somente números" maxlength="11" minlength="11">
                                 </div>
                             </div>
                             <div class="col-md-3 pl-1">
                                 <div class="datepicker-container">
-                                    <div class="form-group">
+                                    <div class="form-group"
+                                    [ngClass]="
+                                    form.controls.dataNascimento?.errors?.required &&
+                                    form.dirty ? 'has-danger' : 'has-success'"
+                                >
                                         <label> Data de Nascimento </label>
                                         <input
                                             class="form-control datetimepicker"
                                             placeholder=""
-                                            name="dp"
-                                            [(ngModel)]="model"
+                                            name="dataNascimento"
+                                            [(ngModel)]="modelDataNascimento"
                                             ngbDatepicker
                                             #d="ngbDatepicker"
                                             (click)="d.toggle()"
                                             data-color="orange"
+                                            formControlName="dataNascimento"
                                         >
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3 pl-1">
-                                <div class="form-group">
+                                <div class="form-group"
+                                    [ngClass]="
+                                    form.controls.funcao?.errors?.required &&
+                                    form.dirty ? 'has-danger' : 'has-success'"
+                                >
                                     <label> Função </label>
-                                    <select class="form-control" placeholder="">
+                                    <select class="form-control" placeholder="" formControlName="funcao">
                                         <option value="1"> A definir </option>
                                     </select>
                                 </div>
@@ -52,53 +72,76 @@
 
                         <div class="row">
                             <div class="col-md-3 pr-md-3">
-                                <div class="form-group">
+                                <div class="form-group"
+                                [ngClass]="
+                                    form.controls.cnpj?.errors?.required ||
+                                    form.controls.cnpj?.errors?.minlength ||
+                                    form.controls.cnpj?.errors?.maxlength &&
+                                    form.dirty ? 'has-danger' : 'has-success'"
+                                >
                                     <label> CNPJ </label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" placeholder="somente números" maxlength="14" minlength="14" formControlName="cnpj">
                                 </div>
                             </div>
                             <div class="col-md-6 pl-1">
                                 <div class="form-group">
                                     <label> Razão Social </label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" placeholder="" formControlName="razaoSocial">
                                 </div>
                             </div>
                             <div class="col-md-3 pl-1">
-                                <div class="form-group">
+                                <div class="form-group"
+                                [ngClass]="
+                                    form.controls.setor?.errors?.maxlength &&
+                                    form.dirty ? 'has-danger' : 'has-success'"
+                                >
                                     <label> Setor </label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" placeholder="" maxLength="30" formControlName="setor">
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-3 pr-1">
-                                <div class="form-group">
+                                <div class="form-group"
+                                [ngClass]="
+                                    form.controls.esocial?.errors?.maxlength &&
+                                    form.dirty ? 'has-danger' : 'has-success'"
+                                >
                                     <label> Matrícula do E-Social </label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" placeholder="somente números" maxlength="20" formControlName="esocial">
                                 </div>
                             </div>
                             <div class="col-md-3 pr-1">
                                 <div class="form-group">
                                     <label> RISCO </label>
-                                    <select class="form-control" placeholder="">
+                                    <select class="form-control" placeholder="" formControlName="risco">
                                         <option value="1"> A definir </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6 pr-md-3">
-                                <div class="form-group has-success">
+                                <div class="form-group"
+                                [ngClass]="
+                                    form.controls.pis?.errors?.minlength ||
+                                    form.controls.pis?.errors?.maxlength &&
+                                    form.dirty ? 'has-danger' : 'has-success'"
+                                >
                                     <label for="email"> PIS </label>
-                                    <input type="text" class="form-control form-control-success" placeholder="">
+                                    <input type="text" class="form-control form-control-success" placeholder="somente números" maxlength="11" minlength="11" formControlName="pis">
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-3 pr-1">
-                                <div class="form-group">
+                                <div class="form-group"
+                                    [ngClass]="
+                                    form.controls.exame?.errors?.required &&
+                                    form.dirty ? 'has-danger' : 'has-success'"
+                                >
                                     <label> Exame </label>
-                                    <select class="form-control" placeholder="" (change)="alterarTipo($event)" [(ngModel)]="tipoExame">
+                                    <select class="form-control" placeholder="" (change)="alterarTipo($event)" [(ngModel)]="tipoExame" formControlName="exame">
                                         <option [value]="1"> Admissional </option>
                                         <option [value]="2"> Demissional </option>
                                         <option [value]="3"> Periódico </option>
@@ -108,34 +151,44 @@
 
                             <div class="col-md-3 pr-1" *ngIf="tipoExame == 1 || tipoExame == 3">
                                 <div class="datepicker-container">
-                                    <div class="form-group">
+                                    <div class="form-group"
+                                        [ngClass]="
+                                        form.controls.dataExame?.errors?.required &&
+                                        form.dirty ? 'has-danger' : 'has-success'"
+                                    >
                                         <label> Data Admissão </label>
                                         <input
                                             class="form-control datetimepicker"
                                             placeholder=""
-                                            name="dp"
+                                            name="dataExame"
                                             [(ngModel)]="model"
                                             ngbDatepicker
                                             #d="ngbDatepicker"
                                             (click)="d.toggle()"
                                             data-color="orange"
+                                            formControlName="dataExame"
                                         >
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3 pr-1" *ngIf="tipoExame == 2">
                                 <div class="datepicker-container">
-                                    <div class="form-group">
+                                    <div class="form-group"
+                                        [ngClass]="
+                                        form.controls.dataExame?.errors?.required &&
+                                        form.dirty ? 'has-danger' : 'has-success'"
+                                    >
                                         <label> Data Demissão</label>
                                         <input
                                             class="form-control datetimepicker"
                                             placeholder=""
-                                            name="dp"
-                                            [(ngModel)]="model"
+                                            name="dataExame"
+                                            [(ngModel)]="modelDataExame"
                                             ngbDatepicker
                                             #d="ngbDatepicker"
                                             (click)="d.toggle()"
                                             data-color="orange"
+                                            formControlName="dataExame"
                                         >
                                     </div>
                                 </div>
@@ -145,7 +198,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <button class="btn btn-primary btn-round" type="button"> Salvar </button>
+                    <button class="btn btn-primary btn-round" type="button" [disabled]="!form.valid"> Salvar </button>
                 </div>
             </div>
         </div>

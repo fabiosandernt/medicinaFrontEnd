@@ -14,9 +14,6 @@ import { ComponenteCriarUsuario } from '../../pages/usuario/criar-usuario/criar-
 import { ComponenteCriarFuncionario } from '../../pages/funcionario/criar-funcionario/criar-funcionario.component';
 import { ComponenteListarFuncionario } from '../../pages/funcionario/listar-funcionario/listar-funcionario.component';
 import { ComponenteCriarEmpresa } from '../../pages/empresa/criar-empresa/criar-empresa.component';
-import { IConfig, NgxMaskModule } from 'ngx-mask';
-
-export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
     imports: [
@@ -26,8 +23,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
         ReactiveFormsModule,
         ChartsModule,
         NgbModule,
-        ToastrModule.forRoot(),
-        NgxMaskModule.forRoot(),
+        ToastrModule.forRoot()
     ],
     declarations: [
         DashboardComponent,
