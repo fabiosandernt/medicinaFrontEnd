@@ -1,4 +1,4 @@
-# [Now UI Dashboard Angular](https://creativetimofficial.github.io/now-ui-dashboard-angular) [![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE]
+# [MEDICINA FRONTEND](https://creativetimofficial.github.io/now-ui-dashboard-angular) [![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE]
 
 [CHANGELOG]: ./CHANGELOG.md
 [LICENSE]: ./LICENSE
