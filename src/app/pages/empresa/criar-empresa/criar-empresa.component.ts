@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Empresa } from '../../../shared/models/empresa';
+import { EmpresaService } from '../../../shared/services/empresa.service';
 
 @Component({
     selector: 'app-criar-empresa',
@@ -8,16 +12,26 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
     styleUrls: ['./criar-empresa.component.css']
 })
 export class ComponenteCriarEmpresa implements OnInit {
-    //closeResult: string;
+    closeResult: string;
     form: FormGroup;
-    empresa: any;
+    empresa: Empresa;
 
     constructor(
         private modalService: NgbModal,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private router: Router,
+        private activatedRouter: ActivatedRoute,
+        private empresaService: EmpresaService,
+        public dialog: MatDialog,
     ) {}
 
+    // openModal(): void {
+    //     this.dialog.open(ComponenteModalMat, { width: '250px' });
+    // }
+
     ngOnInit(): void {
+        this.empresa = this.activatedRouter.snapshot.data.empresa != undefined ? this.activatedRouter.snapshot.data.empresa : {};
+
         this.initForm()
     }
 
@@ -33,8 +47,18 @@ export class ComponenteCriarEmpresa implements OnInit {
     }
 
     open(content: any) {
-        this.modalService.open(content, {
+        //this.modalService.open(content, { windowClass: 'modal-mini modal-primary', size: 'sm' })
+        this.modalService.open(content,
+        {
             windowClass: 'modal-mini modal-primary', size: 'sm'
+        })
+        .result.then((result: any) =>
+        {
+            this.closeResult = `Closed with: ${result}`;
+        },
+        (reason: any) =>
+        {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`
         })
     }
 
@@ -46,5 +70,26 @@ export class ComponenteCriarEmpresa implements OnInit {
         } else {
             return  `with: ${reason}`;
         }
+    }
+
+    salvarCadastro() {
+        if(!this.form.invalid) return;
+
+        const formData = {...this.form.value};
+
+        const empresaData: Empresa = {
+            id: this.empresa?.id,
+            cnpj: formData.cnpj,
+            razaoSocial: formData.razaoSocial,
+            celular: formData.celular,
+            telefone: formData.telefone,
+            endereco: formData.endereco,
+            email: formData.email
+        }
+
+        return this.empresaService.Salvar(empresaData).subscribe({
+            next: () => this.router.navigate(["company/list"]),
+            error: (err: any) => console.log(err)
+        })
     }
 }
