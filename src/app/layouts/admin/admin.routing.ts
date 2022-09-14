@@ -8,14 +8,16 @@ import { ComponenteListarFuncionario } from '../../pages/funcionario/listar-func
 import { ComponenteCriarFuncionario } from '../../pages/funcionario/criar-funcionario/criar-funcionario.component';
 import { ComponenteCriarUsuario } from '../../pages/usuario/criar-usuario/criar-usuario.component';
 import { ComponenteCriarASO } from '../../pages/aso/criar-aso/criar-aso.component';
+import { EmpresaResolve } from '../../pages/empresa/empresa-resolve';
 
 export const AdminRoutes: Routes = [
-    { path: 'dashboard',            component: DashboardComponent },
-    { path: 'empresa/listar',       component: ComponenteListarEmpresa },
-    { path: 'empresa/criar',        component: ComponenteCriarEmpresa },
-    { path: 'usuario/listar',       component: ComponenteListarUsuario },
-    { path: 'usuario/criar',        component: ComponenteCriarUsuario },
-    { path: 'funcionario/listar',   component: ComponenteListarFuncionario },
-    { path: 'funcionario/criar',    component: ComponenteCriarFuncionario },
-    { path: 'aso/criar',    component: ComponenteCriarASO },
+    { path: 'dashboard',                    component: DashboardComponent },
+    { path: 'empresa/listar',               component: ComponenteListarEmpresa },
+    { path: 'empresa/criar',                component: ComponenteCriarEmpresa },
+    { path: 'empresa/atualizar/:id',        component: ComponenteCriarEmpresa, resolve: { empresa: EmpresaResolve } },
+    { path: 'usuario/listar',               component: ComponenteListarUsuario },
+    { path: 'usuario/criar',                component: ComponenteCriarUsuario },
+    { path: 'funcionario/listar',           component: ComponenteListarFuncionario },
+    { path: 'funcionario/criar',            component: ComponenteCriarFuncionario },
+    { path: 'aso/criar',                    component: ComponenteCriarASO },
 ];
