@@ -5,13 +5,14 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title"> Usuários </h4>
-                    <button class="btn btn-primary btn-round" routerLink="/usuario/criar">Adicionar</button>
+                    <button class="btn btn-primary btn-simple btn-round" routerLink="/usuario/criar"> Adicionar </button>
                 </div>
 
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
                             <thead class=" text-primary">
+                                <th></th>
                                 <th>
                                     Nome
                                 </th>
@@ -24,6 +25,15 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td class="d-flex" style="justify-content: space-evenly">
+                                        <button class="btn btn-primary btn-icon btn-round" type="button">
+                                            <i class="now-ui-icons tim-icons icon-pencil"></i>
+                                        </button>
+
+                                        <button class="btn btn-primary btn-icon btn-round" type="button">
+                                            <i class="now-ui-icons tim-icons icon-trash-simple"></i>
+                                        </button>
+                                    </td>
                                     <td>
                                         Teste
                                     </td>

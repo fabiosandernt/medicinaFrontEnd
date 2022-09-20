@@ -7,13 +7,12 @@
                 <div class="card-header">
                     <h5 class="title">Adicionar Usuário</h5>
                     <button class="btn btn-primary btn-simple btn-round" type="button"> Cancelar </button>
-
                 </div>
 
                 <div class="card-body">
                     <form [formGroup]="form">
                         <div class="row">
-                            <div class="col-md-4 pr-md-3">
+                            <div class="col-md-3 pr-md-1">
                                 <div class="form-group"
                                     [ngClass]="
                                     form.controls.nome?.errors?.required ||
@@ -24,7 +23,7 @@
                                     <input type="text" class="form-control" placeholder="" formControlName="nome" maxlength="30">
                                 </div>
                             </div>
-                            <div class="col-md-4 pl-1">
+                            <div class="col-md-3 pr-md-1">
                                 <div class="form-group"
                                 [ngClass]="
                                     form.controls.tipo?.errors?.required &&
@@ -38,7 +37,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4 pl-1">
+                            <div class="col-md-3 pr-md-1">
                                 <div class="form-group"
                                     [ngClass]="
                                     form.controls.senha?.errors?.required ||
@@ -50,10 +49,7 @@
                                     <input type="password" class="form-control" placeholder="Mínimo de 5 caracteres e maxímo de 15 caracteres" formControlName="senha" minlength="5" maxlength="15">
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12 pl-md-3">
+                            <div class="col-md-3">
                                 <div class="form-group"
                                     [ngClass]="
                                     form.controls.email?.errors?.required ||
