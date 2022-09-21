@@ -4,6 +4,7 @@ export declare interface Empresa {
     razaoSocial: string;
     celular: string;
     telefone: string;
+    risco: number;
     endereco: string;
     email: string;
 }

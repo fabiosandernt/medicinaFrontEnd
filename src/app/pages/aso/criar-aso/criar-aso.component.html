@@ -112,15 +112,7 @@
                                     <input type="text" class="form-control" placeholder="somente números" maxlength="20" formControlName="esocial">
                                 </div>
                             </div>
-                            <div class="col-md-3 pr-md-1">
-                                <div class="form-group">
-                                    <label> RISCO </label>
-                                    <select class="form-control" placeholder="" formControlName="risco">
-                                        <option value="1"> A definir </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-group"
                                 [ngClass]="
                                     form.controls.pis?.errors?.minlength ||
@@ -131,9 +123,7 @@
                                     <input type="text" class="form-control form-control-success" placeholder="somente números" maxlength="11" minlength="11" formControlName="pis">
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
                             <div class="col-md-3 pr-md-1">
                                 <div class="form-group"
                                     [ngClass]="

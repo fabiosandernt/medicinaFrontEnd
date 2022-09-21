@@ -8,7 +8,6 @@ export declare interface Funcionario {
     razaoSocial: string;
     setor: string;
     esocial: string;
-    risco: string;
     pis: string;
     exame: number;
     dataExame: Date;
