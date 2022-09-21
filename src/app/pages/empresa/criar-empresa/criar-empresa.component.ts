@@ -41,6 +41,7 @@ export class ComponenteCriarEmpresa implements OnInit {
             razaoSocial: [this.empresa?.razaoSocial, [Validators.required]],
             celular: [this.empresa?.celular, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
             telefone: [this.empresa?.telefone, [Validators.maxLength(9)]],
+            risco: [this.empresa?.risco],
             endereco: [this.empresa?.endereco, [Validators.maxLength(50)]],
             email: [this.empresa?.email, [Validators.required, Validators.pattern("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+).(\.[a-z]{2,3})$"), Validators.maxLength(50)]],
         });
@@ -83,6 +84,7 @@ export class ComponenteCriarEmpresa implements OnInit {
             razaoSocial: formData.razaoSocial,
             celular: formData.celular,
             telefone: formData.telefone,
+            risco: formData.risco,
             endereco: formData.endereco,
             email: formData.email
         }

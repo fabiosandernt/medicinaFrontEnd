@@ -6,8 +6,8 @@ export declare interface Aso {
     funcao: number;
     cnpj: string;
     razaoSocial: string;
+    setor: string;
     esocial: string;
-    risco: string;
     pis: string;
     exame: number;
     dataExame: Date;

@@ -44,7 +44,6 @@ export class ComponenteCriarFuncionario implements OnInit {
             razaoSocial: [this.funcionario?.razaoSocial],
             setor: [this.funcionario?.setor, [Validators.maxLength(30)]],
             esocial: [this.funcionario?.esocial, [Validators.maxLength(20)]],
-            risco: [this.funcionario?.risco],
             pis: [this.funcionario?.pis, [Validators.minLength(11), Validators.maxLength(11)]],
             exame: [this.funcionario?.exame, [Validators.required]],
             dataExame: [this.funcionario?.dataExame, [Validators.required]],
@@ -91,7 +90,6 @@ export class ComponenteCriarFuncionario implements OnInit {
             razaoSocial: formData.razaoSocial,
             setor: formData.setor,
             esocial: formData.esocial,
-            risco: formData.risco,
             pis: formData.pis,
             exame: formData.exame,
             dataExame: formData.dataExame

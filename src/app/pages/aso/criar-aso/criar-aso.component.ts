@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Aso } from '../../../shared/models/aso';
 
 @Component({
   selector: 'app-criar-aso',
@@ -12,7 +13,7 @@ export class ComponenteCriarASO implements OnInit {
     tipoExame: any
 
     form: FormGroup;
-    aso: any;
+    aso: Aso;
 
     modelDataNascimento: NgbDateStruct;
     modelDataExame: NgbDateStruct;
@@ -32,7 +33,6 @@ export class ComponenteCriarASO implements OnInit {
             razaoSocial: [this.aso?.razaoSocial],
             setor: [this.aso?.setor, [Validators.maxLength(30)]],
             esocial: [this.aso?.esocial, [Validators.maxLength(20)]],
-            risco: [this.aso?.risco],
             pis: [this.aso?.pis, [Validators.minLength(11), Validators.maxLength(11)]],
             exame: [this.aso?.exame, [Validators.required]],
             dataExame: [this.aso?.dataExame, [Validators.required]],
