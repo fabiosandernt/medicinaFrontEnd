@@ -6,32 +6,32 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 
-export class EmpresaService {
+export class ASOService {
     constructor(private _httpClient: HttpClient) {}
 
     Salvar(values: any): Observable<any> {
 
         if (values.id) {
             return this._httpClient.put<any>(
-                `company/update-company/${values.id}`, values
+                `aso/update-aso/${values.id}`, values
             );
         }
 
         return this._httpClient.post<any>(
-            "company/create-company", values
+            "aso/create-aso", values
         );
     }
 
     Listar(): Observable<any> {
         return this._httpClient.get<any>(
-            `company/list-companies`
+            `aso/list-aso`
         );
     }
 
     ListarPorId(id: any): Observable<any>{
         if(id !== null) {
             return this._httpClient.get<any> (
-                `company/list-company/${id}`
+                `aso/list-aso/${id}`
             )
         }
     }
@@ -39,7 +39,7 @@ export class EmpresaService {
     Deletar(id: any): Observable<any>{
         if(id !== null) {
             return this._httpClient.delete<any> (
-                `company/delete-company/${id}`
+                `aso/delete-aso/${id}`
             )
         }
     }

@@ -7,30 +7,30 @@ import { Observable } from 'rxjs';
 })
 
 export class FuncionarioService {
-    constructor(private httpClient: HttpClient) {}
+    constructor(private _httpClient: HttpClient) {}
 
     Salvar(values: any): Observable<any> {
 
         if (values.id) {
-            return this.httpClient.put<any>(
+            return this._httpClient.put<any>(
                 `employee/update-employee/${values.id}`, values
             );
         }
 
-        return this.httpClient.post<any>(
+        return this._httpClient.post<any>(
             "employee/create-employee", values
         );
     }
 
     Listar(): Observable<any> {
-        return this.httpClient.get<any>(
+        return this._httpClient.get<any>(
             `employee/list-employees`
         );
     }
 
     ListarPorId(id: any): Observable<any>{
         if(id !== null) {
-            return this.httpClient.get<any> (
+            return this._httpClient.get<any> (
                 `employee/list-employee/${id}`
             )
         }
@@ -38,7 +38,7 @@ export class FuncionarioService {
 
     Deletar(id: any): Observable<any>{
         if(id !== null) {
-            return this.httpClient.delete<any> (
+            return this._httpClient.delete<any> (
                 `employee/delete-employee/${id}`
             )
         }
