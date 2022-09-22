@@ -20,7 +20,7 @@ export class ComponenteListarEmpresa implements OnInit {
     tamanhoColecao: number = 0;
     pagina: number = 1;
 
-    constructor(private _router: Router, private empresaService: EmpresaService) { }
+    constructor(private _router: Router, private _empresaService: EmpresaService) { }
 
     ngOnInit(): void {
         this.listar()
@@ -33,14 +33,19 @@ export class ComponenteListarEmpresa implements OnInit {
     deletarEmpresa(id: number) {
         if(!id) return;
 
-        return this.empresaService.Deletar(id).subscribe({
+        return this._empresaService.Deletar(id).subscribe({
             next: () => this._router.navigate(["company/list"]),
             error: (err: any) => console.log(err)
         })
     }
 
+    sharedWhatsApp(value: any) {
+        var urlLink = `https://api.whatsapp.com/send/?phone=55${value}`;
+        return window.open(urlLink, '_blank');
+    }
+
     listar(){
-        this.empresaService.Listar().subscribe((data: any) => {
+        this._empresaService.Listar().subscribe((data: any) => {
             this.empresas = data;
 
             this.totalPagina = data.totalPagina;
