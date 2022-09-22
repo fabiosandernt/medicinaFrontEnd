@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ASOService } from '../../../shared/services/aso.service';
 import { Aso } from '../../../shared/models/aso';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-criar-aso',
@@ -18,13 +20,19 @@ export class ComponenteCriarASO implements OnInit {
     modelDataNascimento: NgbDateStruct;
     modelDataExame: NgbDateStruct;
 
-    constructor(private modalService: NgbModal, private formBuilder: FormBuilder) { }
+    constructor(
+        private _modalService: NgbModal,
+        private _formBuilder: FormBuilder,
+        private _asoService: ASOService,
+        private _router: Router
+    ) {}
+
     ngOnInit(): void {
         this.initForm()
     }
 
     initForm() {
-        this.form = this.formBuilder.group({
+        this.form = this._formBuilder.group({
             nome: [this.aso?.nome, [Validators.required, Validators.maxLength(50)]],
             cpf: [this.aso?.cpf, [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
             dataNascimento: [this.aso?.dataNascimento, [Validators.required]],
@@ -40,7 +48,7 @@ export class ComponenteCriarASO implements OnInit {
     }
 
     open(content: any) {
-        this.modalService.open(content, {
+        this._modalService.open(content, {
             windowClass: 'modal-mini modal-primary', size: 'sm' }).result.then((result: any) => {
             this.closeResult = `Closed with: ${result}`;
         },
@@ -62,5 +70,31 @@ export class ComponenteCriarASO implements OnInit {
     public alterarTipo(e: any) {
         this.tipoExame = e.target.value;
         console.log(this.tipoExame);
+    }
+
+    salvarCadastro() {
+        if(!this.form.invalid) return;
+
+        const formData = {...this.form.value};
+
+        const asoData: Aso = {
+            id: this.aso?.id,
+            nome: formData.nome,
+            cpf: formData.cpf,
+            dataNascimento: formData.dataNascimento,
+            funcao: formData.funcao,
+            cnpj: formData.cnpj,
+            razaoSocial: formData.razaoSocial,
+            setor: formData.setor,
+            esocial: formData.esocial,
+            pis: formData.pis,
+            exame: formData.exame,
+            dataExame: formData.dataExame
+        }
+
+        return this._asoService.Salvar(asoData).subscribe({
+            next: () => this._router.navigate(["aso/listar"]),
+            error: (err: any) => console.log(err)
+        })
     }
 }
