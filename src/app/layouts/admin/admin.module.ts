@@ -17,6 +17,7 @@ import { ComponenteCriarEmpresa } from '../../pages/empresa/criar-empresa/criar-
 import { ComponenteCriarASO } from '../../pages/aso/criar-aso/criar-aso.component';
 
 import { MatDialogModule } from "@angular/material/dialog";
+import { ComponenteListarASO } from '../../pages/aso/listar-aso/listar-aso.component';
 
 @NgModule({
     imports: [
@@ -37,7 +38,8 @@ import { MatDialogModule } from "@angular/material/dialog";
         ComponenteCriarFuncionario,
         ComponenteListarFuncionario,
         ComponenteCriarUsuario,
-        ComponenteCriarASO
+        ComponenteCriarASO,
+        ComponenteListarASO
     ]
 })
 
