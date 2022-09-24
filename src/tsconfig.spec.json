@@ -6,12 +6,12 @@
     "target": "es5",
     "baseUrl": "",
     "types": [
-      "jasmine",
+      "jest",
       "node"
     ]
   },
   "files": [
-    "test.ts",
+    "setupJest.ts",
     "polyfills.ts"
   ],
   "include": [
