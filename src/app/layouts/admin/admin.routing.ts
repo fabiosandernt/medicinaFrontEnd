@@ -21,5 +21,5 @@ export const AdminRoutes: Routes = [
     { path: 'funcionario/listar',           component: ComponenteListarFuncionario },
     { path: 'funcionario/criar',            component: ComponenteCriarFuncionario },
     { path: 'aso/criar',                    component: ComponenteCriarASO },
-    { path: 'aso/listar',                    component: ComponenteListarASO },
+    { path: 'aso/listar',                   component: ComponenteListarASO },
 ];

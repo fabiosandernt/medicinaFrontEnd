@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrModule } from "ngx-toastr";
@@ -13,7 +13,9 @@ import { AuthRoutes } from "./auth.routing";
         RouterModule.forChild(AuthRoutes),
         FormsModule,
         NgbModule,
-        ToastrModule.forRoot()
+        ToastrModule.forRoot(),
+        FormsModule,
+        ReactiveFormsModule,
     ],
     declarations: [
         ComponenteLogin,

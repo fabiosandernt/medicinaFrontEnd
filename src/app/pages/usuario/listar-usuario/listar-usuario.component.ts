@@ -27,7 +27,7 @@ export class ComponenteListarUsuario implements OnInit {
     }
 
     atualizar(id: number) {
-        this._router.navigate(['/funcionario/atualizar', id]);
+        this._router.navigate(['/usuario/atualizar', id]);
     }
 
     deletar(id: number) {
