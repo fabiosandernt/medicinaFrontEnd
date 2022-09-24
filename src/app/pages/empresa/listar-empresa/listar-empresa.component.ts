@@ -34,7 +34,7 @@ export class ComponenteListarEmpresa implements OnInit {
         if(!id) return;
 
         return this._empresaService.Deletar(id).subscribe({
-            next: () => this._router.navigate(["company/list"]),
+            next: () => this._router.navigate(["/empresa/listar"]),
             error: (err: any) => console.log(err)
         })
     }

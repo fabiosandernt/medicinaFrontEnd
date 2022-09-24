@@ -93,7 +93,7 @@ export class ComponenteCriarASO implements OnInit {
         }
 
         return this._asoService.Salvar(asoData).subscribe({
-            next: () => this._router.navigate(["aso/listar"]),
+            next: () => this._router.navigate(["/aso/listar"]),
             error: (err: any) => console.log(err)
         })
     }

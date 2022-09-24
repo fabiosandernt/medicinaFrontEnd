@@ -22,7 +22,7 @@ export class ComponenteCriarFuncionario implements OnInit {
 
     constructor(
         private modalService: NgbModal,
-        private formBuilder: FormBuilder,
+        private _formBuilder: FormBuilder,
         private funcionarioService: FuncionarioService,
         private router: Router,
         private activatedRouter: ActivatedRoute,
@@ -35,7 +35,7 @@ export class ComponenteCriarFuncionario implements OnInit {
     }
 
     initForm() {
-        this.form = this.formBuilder.group({
+        this.form = this._formBuilder.group({
             nome: [this.funcionario?.nome, [Validators.required, Validators.maxLength(50)]],
             cpf: [this.funcionario?.cpf, [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
             dataNascimento: [this.funcionario?.dataNascimento, [Validators.required]],
@@ -96,7 +96,7 @@ export class ComponenteCriarFuncionario implements OnInit {
         }
 
         return this.funcionarioService.Salvar(funcionarioData).subscribe({
-            next: () => this.router.navigate(["employee/list"]),
+            next: () => this.router.navigate(["/empresa/listar"]),
             error: (err: any) => console.log(err)
         })
     }

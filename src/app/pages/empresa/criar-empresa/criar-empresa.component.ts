@@ -90,7 +90,7 @@ export class ComponenteCriarEmpresa implements OnInit {
         }
 
         return this.empresaService.Salvar(empresaData).subscribe({
-            next: () => this.router.navigate(["company/list"]),
+            next: () => this.router.navigate(["/empresa/listar"]),
             error: (err: any) => console.log(err)
         })
     }
