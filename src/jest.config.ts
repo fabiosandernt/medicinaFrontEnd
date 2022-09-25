@@ -1,20 +1,22 @@
 /** @type {import('@jest/types').Config.InitialOptions} */
 export const config: any = {
     preset: 'jest-preset-angular',
-    setupFilesAfterEnv: ['<rootDir>/src/setupJest.ts'],
+    setupFilesAfterEnv: ['setupJest.ts'],
     testPathIgnorePatterns: [
-        '<rootDir>/node_modules/',
-        '<rootDir>/dist/'
+        '../node_modules/',
+        '../dist/',
+        'app/components/template/*'
     ],
     moduleNameMapper: {
       "lodash-es": "lodash",
     },
     globals: {
         'ts-jest': {
-            tsconfig: '<rootDir>/src/tsconfig.spec.json',
+            tsconfig: '../tsconfig.spec.json',
             stringifyContentPathRegex: '\\.html$',
+            enableTsDiagnostics: true,
             diagnostics: {
-            ignoreCodes: [151001]
+                ignoreCodes: [151001]
             }
         }
     },
