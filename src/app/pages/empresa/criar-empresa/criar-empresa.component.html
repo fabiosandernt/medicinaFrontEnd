@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="title"> Adicionar Empresa </h5>
-                    <button class="btn btn-primary btn-simple btn-round" type="button" (click)="open(content_cancel)"> Cancelar </button>
+                    <button class="btn btn-primary btn-simple btn-round" type="button" (click)="openModal()"> Cancelar </button>
                 </div>
 
                 <div class="card-body">
@@ -117,7 +117,7 @@
     </div>
 </div>
 
-<ng-template #content_cancel let-modal>
+<ng-template #contentModalCancel let-modal>
     <div class="modal-header justify-content-center">
         <div class="modal-profile">
             <i class="now-ui-icons ui-1_simple-remove"></i>
@@ -127,8 +127,8 @@
         <p> Deseja realmente sair? Todos os dados não salvos, serão perdidos.
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-round" (click)="modal.close('Cancel click')"> Voltar </button>
-        <button type="button" class="btn btn-round" (click)="modal.close('Ok click')"> Continuar </button>
+        <button type="button" class="btn btn-round" (click)="modalService.dismiss('Cross click')"> Voltar </button>
+        <button type="button" class="btn btn-round" (click)="modalService.close('Ok click')"> Continuar </button>
     </div>
 </ng-template>
 

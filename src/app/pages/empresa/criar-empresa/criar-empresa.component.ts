@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Empresa } from '../../../shared/models/empresa';
 import { EmpresaService } from '../../../shared/services/empresa.service';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
     selector: 'app-criar-empresa',
@@ -49,11 +50,21 @@ export class ComponenteCriarEmpresa implements OnInit {
 
     open(content: any) {
         //this.modalService.open(content, { windowClass: 'modal-mini modal-primary', size: 'sm' })
-        this.modalService.open(content,
-        {
-            windowClass: 'modal-mini modal-primary', size: 'sm'
-        })
+        this.modalService.open(content)
         .result.then((result: any) =>
+        {
+            this.closeResult = `Closed with: ${result}`;
+        },
+        (reason: any) =>
+        {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`
+        })
+    }
+
+    openModal() {
+        this.modalService.open(ModalComponent,
+            { windowClass: 'modal-mini modal-primary', size: 'sm' }
+        ).result.then((result: any) =>
         {
             this.closeResult = `Closed with: ${result}`;
         },
