@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 import { ComponentsModule } from './components/components.module';
 
 import { MatDialogModule } from "@angular/material/dialog";
+import { httpInterceptorProviders } from './shared/modules/auth.interceptors';
 
 @NgModule({
     imports: [
@@ -35,7 +36,7 @@ import { MatDialogModule } from "@angular/material/dialog";
         AdminComponent,
         AuthComponent
     ],
-    providers: [],
+    providers: [ httpInterceptorProviders ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

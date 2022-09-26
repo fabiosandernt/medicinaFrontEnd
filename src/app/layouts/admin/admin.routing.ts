@@ -12,6 +12,7 @@ import { EmpresaResolve } from '../../pages/empresa/empresa-resolve';
 import { ComponenteListarASO } from '../../pages/aso/listar-aso/listar-aso.component';
 
 export const AdminRoutes: Routes = [
+    { path: '',                             redirectTo: 'empresa/listar' },
     { path: 'dashboard',                    component: DashboardComponent },
     { path: 'empresa/listar',               component: ComponenteListarEmpresa },
     { path: 'empresa/criar',                component: ComponenteCriarEmpresa },
