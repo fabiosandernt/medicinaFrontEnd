@@ -16,6 +16,9 @@ import { ComponenteListarFuncionario } from '../../pages/funcionario/listar-func
 import { ComponenteCriarEmpresa } from '../../pages/empresa/criar-empresa/criar-empresa.component';
 import { ComponenteCriarASO } from '../../pages/aso/criar-aso/criar-aso.component';
 
+import { MatDialogModule } from "@angular/material/dialog";
+import { ComponenteListarASO } from '../../pages/aso/listar-aso/listar-aso.component';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -24,7 +27,8 @@ import { ComponenteCriarASO } from '../../pages/aso/criar-aso/criar-aso.componen
         ReactiveFormsModule,
         ChartsModule,
         NgbModule,
-        ToastrModule.forRoot()
+        ToastrModule.forRoot(),
+        MatDialogModule
     ],
     declarations: [
         DashboardComponent,
@@ -34,7 +38,8 @@ import { ComponenteCriarASO } from '../../pages/aso/criar-aso/criar-aso.componen
         ComponenteCriarFuncionario,
         ComponenteListarFuncionario,
         ComponenteCriarUsuario,
-        ComponenteCriarASO
+        ComponenteCriarASO,
+        ComponenteListarASO
     ]
 })
 

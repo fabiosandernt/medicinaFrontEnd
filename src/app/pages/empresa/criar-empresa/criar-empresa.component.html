@@ -6,13 +6,13 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="title"> Adicionar Empresa </h5>
-                    <button class="btn btn-primary btn-simple btn-round" type="button"> Cancelar </button>
+                    <button class="btn btn-primary btn-simple btn-round" type="button" (click)="openModal()"> Cancelar </button>
                 </div>
 
                 <div class="card-body">
                     <form [formGroup]="form">
                         <div class="row">
-                            <div class="col-md-3 pr-md-3">
+                            <div class="col-md-3 pr-md-1">
                                 <div class="form-group"
                                     [ngClass]="
                                         form.controls.cnpj?.errors?.required ||
@@ -31,7 +31,7 @@
                                     >
                                 </div>
                             </div>
-                            <div class="col-md-3 pl-1">
+                            <div class="col-md-3 pr-md-1">
                                 <div class="form-group"
                                     [ngClass]="
                                     form.controls.razaoSocial?.errors?.required &&
@@ -41,7 +41,7 @@
                                     <input type="text" class="form-control" placeholder="" formControlName="razaoSocial">
                                 </div>
                             </div>
-                            <div class="col-md-3 pl-1">
+                            <div class="col-md-3 pr-md-1">
                                 <div class="form-group"
                                 [ngClass]="
                                     form.controls.celular?.errors?.required ||
@@ -53,7 +53,7 @@
                                     <input type="text" class="form-control" placeholder="" minlength="9" maxlength="9" formControlName="celular">
                                 </div>
                             </div>
-                            <div class="col-md-3 pl-1">
+                            <div class="col-md-3">
                                 <div class="form-group"
                                 [ngClass]="
                                     form.controls.telefone?.errors?.maxlength &&
@@ -66,7 +66,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6 pr-1">
+                            <div class="col-md-6 pr-md-1">
                                 <div class="form-group"
                                 [ngClass]="
                                     form.controls.endereco?.errors?.maxlength &&
@@ -76,8 +76,7 @@
                                     <input type="text" class="form-control" placeholder="" maxlength="50" formControlName="endereco">
                                 </div>
                             </div>
-
-                            <div class="col-md-6">
+                            <div class="col-md-3 pr-md-1">
                                 <div class="form-group"
                                     [ngClass]="
                                     form.controls.email?.errors?.required ||
@@ -95,6 +94,17 @@
                                     >
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label> RISCO </label>
+                                    <select class="form-control" placeholder="" formControlName="risco">
+                                        <option value="1"> 1 </option>
+                                        <option value="1"> 2 </option>
+                                        <option value="1"> 3 </option>
+                                        <option value="1"> 4 </option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -107,7 +117,7 @@
     </div>
 </div>
 
-<ng-template #modal_mini_cancel let-modal>
+<ng-template #contentModalCancel let-modal>
     <div class="modal-header justify-content-center">
         <div class="modal-profile">
             <i class="now-ui-icons ui-1_simple-remove"></i>
@@ -117,12 +127,12 @@
         <p> Deseja realmente sair? Todos os dados não salvos, serão perdidos.
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-round" (click)="modal.close('Close click')"> Voltar </button>
-        <button type="button" class="btn btn-round" (click)="modal.close('Save click')"> Continuar </button>
+        <button type="button" class="btn btn-round" (click)="modalService.dismiss('Cross click')"> Voltar </button>
+        <button type="button" class="btn btn-round" (click)="modalService.close('Ok click')"> Continuar </button>
     </div>
 </ng-template>
 
-<ng-template #modal_mini_confirm let-modal>
+<ng-template #content_confirm let-modal>
     <div class="modal-header justify-content-center">
         <div class="modal-profile">
             <i class="now-ui-icons ui-1_check"></i>

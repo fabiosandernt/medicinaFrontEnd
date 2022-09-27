@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-//  @import "~bootstrap/scss/bootstrap";
+ @import "~bootstrap/scss/bootstrap";
  @import 'now-ui-dashboard/variables';
  @import 'now-ui-dashboard/mixins';
 
@@ -29,6 +29,7 @@
  @import "now-ui-dashboard/typography";
  @import "now-ui-dashboard/misc";
  @import "now-ui-dashboard/checkboxes-radio";
+ @import "now-ui-dashboard/badges";
 
  // components
  @import "now-ui-dashboard/navbar";
@@ -50,14 +51,6 @@
  @import "now-ui-dashboard/cards/card-map";
 
 @import "now-ui-dashboard/responsive";
-
-@import "now-ui-dashboard/modals";
-
-@import "now-ui-kit/sections";
-@import "now-ui-kit/plugins/plugin-datepicker";
-@import "now-ui-kit/pagination";
-
-@import "now-ui-kit/example-pages";
 
 
 

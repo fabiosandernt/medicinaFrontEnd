@@ -1,25 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponenteCriarUsuario } from "./criar-usuario.component";
 
-import { CriarUsuarioComponent } from './criar-usuario.component';
+describe('ComponenteLogin', () => {
+    let fixture: ComponenteCriarUsuario;
 
-describe('CriarUsuarioComponent', () => {
-  let component: CriarUsuarioComponent;
-  let fixture: ComponentFixture<CriarUsuarioComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ CriarUsuarioComponent ]
-    })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CriarUsuarioComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('ComponenteLogin ready!', () => {});
 });
+

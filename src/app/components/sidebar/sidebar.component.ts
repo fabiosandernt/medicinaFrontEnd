@@ -16,7 +16,6 @@ export const ROUTES: RouteInfo[] = [
         title: 'Empresa',
         icon: 'business_chart-bar-32',
         class: '',
-        pathSubItem: '/empresa/criar',
         idMenu: true
     },
     {
@@ -24,11 +23,10 @@ export const ROUTES: RouteInfo[] = [
         title: 'Funcionário',
         icon: 'business_badge',
         class: '',
-        pathSubItem: '/funcionario/criar',
         idMenu: true
     },
     {
-        path: '/aso/criar',
+        path: '/aso/listar',
         title: 'ASO',
         icon: 'files_paper',
         class: '',

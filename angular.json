@@ -14,7 +14,7 @@
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "tsConfig": "./tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
             "allowedCommonJsDependencies": ["hammerjs", "chart.js"],
             "assets": [
@@ -22,14 +22,20 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
-              "node_modules/bootstrap/dist/css/bootstrap.css",
-              "node_modules/ngx-toastr/toastr.css",
-              "src/assets/scss/now-ui-dashboard.scss",
-              "src/assets/demo/demo.css"
+                "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+                "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                "node_modules/ngx-toastr/toastr.css",
+                "src/assets/scss/now-ui-dashboard.scss",
+                "src/assets/scss/now-ui-kit.scss",
+                "src/assets/demo/demo.css",
+                "src/assets/css/tim-icons.css"
             ],
             "scripts": [
-              "node_modules/chart.js/dist/Chart.min.js"
+              "node_modules/chart.js/dist/Chart.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/js/dist/modal.js"
             ]
           },
           "configurations": {
@@ -79,35 +85,12 @@
             "browserTarget": "now-ui-dashboard-angular:build"
           }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "scripts": [
-              "node_modules/chart.js/dist/Chart.min.js"
-            ],
-            "styles": [
-              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
-              "node_modules/ngx-toastr/toastr.css",
-              "src/assets/scss/now-ui-dashboard.scss",
-              "src/assets/demo/demo.css",
-              "src/assets/scss/now-ui-kit.scss"
-            ],
-            "assets": [
-              "src/assets",
-              "src/favicon.ico"
-            ]
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "./tsconfig.app.json",
+              "./tsconfig.spec.json"
             ],
             "exclude": []
           }

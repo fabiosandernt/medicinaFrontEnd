@@ -15,6 +15,8 @@ import { AuthComponent } from './layouts/auth/auth.component';
 import { CommonModule } from '@angular/common';
 import { ComponentsModule } from './components/components.module';
 
+import { MatDialogModule } from "@angular/material/dialog";
+
 @NgModule({
     imports: [
         BrowserAnimationsModule,
@@ -25,7 +27,8 @@ import { ComponentsModule } from './components/components.module';
         AppRoutingModule,
         NgbModule,
         ToastrModule.forRoot(),
-        CommonModule
+        CommonModule,
+        MatDialogModule
     ],
     declarations: [
         AppComponent,

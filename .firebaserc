@@ -1,5 +1,12 @@
 {
+<<<<<<< HEAD
   "projects": {
     "default": "shmed-78cf9"
   }
 }
+=======
+    "projects": {
+        "default": "medicina-ca591"
+    }
+}
+>>>>>>> d5ac5ebea79ff99d935842b016a20a69ed0c7bd3
