@@ -45,6 +45,7 @@
     "jquery": "^3.5.1",
     "jw-bootstrap-switch-ng2": "2.0.5",
     "jwt-decode": "^3.1.2",
+    "mdb-angular-ui-kit": "^2.3.0",
     "ng-bootstrap": "^1.6.3",
     "ng2-charts": "2.4.2",
     "ngx-mask": "^14.2.1",

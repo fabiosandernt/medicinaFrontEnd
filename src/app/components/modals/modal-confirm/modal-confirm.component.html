@@ -1,14 +1,20 @@
-<ng-template #modal_mini_confirm let-c="close" let-d="dismiss">
+<div class="modal modal-content">
     <div class="modal-header justify-content-center">
-        <div class="modal-profile">
-            <i class="now-ui-icons ui-1_check"></i>
+        <div class="shape-round">
+            <i class="now-ui-icons ui-1_check" style="color: #fff; font-size: xx-large;"></i>
         </div>
     </div>
     <div class="modal-body">
-        <p> Deseja realmente salvar? Está ação não poderá ser desfeita.
+        <p> Deseja salvar? Os dados poderão ser alterados ou exclúidos a qualquer momento.
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-link btn-neutral" (click)="('Close click')" > Voltar </button>
-        <button type="button" class="btn btn-link btn-neutral" (click)="c('Close click')"> Continuar </button>
+        <button type="button" class="btn btn-danger btn-simple btn-round" (click)="modalRef.close()"> Voltar </button>
+        <button type="button" class="btn btn-primary btn-round" (click)="close()"> Continuar </button>
     </div>
-</ng-template>
+</div>
+
+
+
+
+
+
