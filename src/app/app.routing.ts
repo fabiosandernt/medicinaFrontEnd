@@ -23,7 +23,6 @@ const routes: Routes =[
                 loadChildren: () => import('./layouts/admin/admin.module').then(x => x.AdminModule)
             }
         ],
-        canActivate: [AuthorizeGuard]
     },
     {
         path: 'auth',

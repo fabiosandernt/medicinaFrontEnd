@@ -19,6 +19,10 @@ import { ComponenteCriarASO } from '../../pages/aso/criar-aso/criar-aso.componen
 import { MatDialogModule } from "@angular/material/dialog";
 import { ComponenteListarASO } from '../../pages/aso/listar-aso/listar-aso.component';
 
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal'
+import { ComponentsModule } from 'src/app/components/components.module';
+
+
 @NgModule({
     imports: [
         CommonModule,
@@ -28,7 +32,9 @@ import { ComponenteListarASO } from '../../pages/aso/listar-aso/listar-aso.compo
         ChartsModule,
         NgbModule,
         ToastrModule.forRoot(),
-        MatDialogModule
+        MatDialogModule,
+        MdbModalModule,
+        ComponentsModule
     ],
     declarations: [
         DashboardComponent,

@@ -15,10 +15,11 @@ import { AuthComponent } from './layouts/auth/auth.component';
 import { CommonModule } from '@angular/common';
 import { ComponentsModule } from './components/components.module';
 
-import { MatDialogModule } from "@angular/material/dialog";
 import { httpInterceptorProviders } from './shared/modules/auth.interceptors';
 
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal'
+
+import { MatDialogModule } from "@angular/material/dialog";
 
 @NgModule({
     imports: [
@@ -31,8 +32,8 @@ import { MdbModalModule } from 'mdb-angular-ui-kit/modal'
         NgbModule,
         ToastrModule.forRoot(),
         CommonModule,
-        MatDialogModule,
-        MdbModalModule
+        MdbModalModule,
+        MatDialogModule
     ],
     declarations: [
         AppComponent,
