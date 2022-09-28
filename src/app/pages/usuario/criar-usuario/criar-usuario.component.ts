@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { Usuario } from '../../../shared/models/usuario';
 import { UsuarioService } from '../../../shared/services/usuario.service';
+
+import { ComponenteModalCancel, ComponenteModalConfirm } from '../../../components/components.module';
 
 @Component({
   selector: 'app-criar-usuario',
@@ -13,11 +16,14 @@ export class ComponenteCriarUsuario implements OnInit {
     form: FormGroup;
     usuario: Usuario;
 
+    modalRef: MdbModalRef<ComponenteModalCancel | ComponenteModalConfirm> | null = null;
+
     constructor(
         private _formBuilder: FormBuilder,
         private _activatedRouter: ActivatedRoute,
         private _usuarioService: UsuarioService,
-        private _router: Router
+        private _router: Router,
+        private modalMdbService: MdbModalService
     ) {}
 
     ngOnInit(): void {
@@ -26,13 +32,32 @@ export class ComponenteCriarUsuario implements OnInit {
         this.initForm()
     }
 
-    initForm() {
+    initForm(): void {
         this.form = this._formBuilder.group({
             nome: [this.usuario?.nome, [Validators.required, Validators.maxLength(30)]],
             tipo: [this.usuario?.tipo, [Validators.required]],
             senha: [this.usuario?.tipo, [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
-            email: [this.usuario?.email, [Validators.required, Validators.pattern("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+).(\.[a-z]{2,3})$"), Validators.maxLength(50)]],
+            email: [this.usuario?.email, [
+                Validators.required,
+                Validators.pattern("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+).(\.[a-z]{2,3})$"),
+                Validators.maxLength(50)
+            ]],
         });
+    }
+
+    openModal(modalType: string): void {
+        if(!modalType) return;
+
+        if(modalType === 'modalCancel'){
+            this.modalRef = this.modalMdbService.open(ComponenteModalCancel, { data: { routeReturn: "/usuario/listar" } })
+        }
+        else if(modalType === 'modalConfirm'){
+            this.modalRef = this.modalMdbService.open(ComponenteModalConfirm)
+            this.modalRef.onClose.subscribe((saveConfirm: any) => {
+                console.log(saveConfirm);
+                if(saveConfirm === true) this.salvarCadastro()
+            });
+        }
     }
 
     salvarCadastro() {

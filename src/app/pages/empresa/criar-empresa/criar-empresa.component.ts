@@ -1,8 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 import { ComponenteModalCancel, ComponenteModalConfirm } from '../../../components/components.module';
@@ -23,14 +21,11 @@ export class ComponenteCriarEmpresa implements OnInit {
     modalRef: MdbModalRef<ComponenteModalCancel | ComponenteModalConfirm> | null = null;
     //modalConfirmRef: MdbModalRef<ComponenteModalConfirm> | null = null;
 
-    _salvarCadastro: boolean = false;
-
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
         private activatedRouter: ActivatedRoute,
         private empresaService: EmpresaService,
-        public dialog: MatDialog,
         private modalMdbService: MdbModalService
     ) {}
 

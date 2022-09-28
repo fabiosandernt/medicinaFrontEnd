@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalDismissReasons, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { Funcionario } from '../../../shared/models/funcionario';
 import { FuncionarioService } from '../../../shared/services/funcionario.service';
+
+import { ComponenteModalCancel, ComponenteModalConfirm } from '../../../components/components.module';
 
 @Component({
     selector: 'app-criar-funcionario',
@@ -20,12 +23,15 @@ export class ComponenteCriarFuncionario implements OnInit {
     modelDataNascimento: NgbDateStruct;
     modelDataExame: NgbDateStruct;
 
+    modalRef: MdbModalRef<ComponenteModalCancel | ComponenteModalConfirm> | null = null;
+
     constructor(
-        private modalService: NgbModal,
         private _formBuilder: FormBuilder,
         private funcionarioService: FuncionarioService,
         private router: Router,
         private activatedRouter: ActivatedRoute,
+        private modalMdbService: MdbModalService
+
     ) {}
 
     ngOnInit(): void {
@@ -34,7 +40,7 @@ export class ComponenteCriarFuncionario implements OnInit {
         this.initForm()
     }
 
-    initForm() {
+    initForm(): void {
         this.form = this._formBuilder.group({
             nome: [this.funcionario?.nome, [Validators.required, Validators.maxLength(50)]],
             cpf: [this.funcionario?.cpf, [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
@@ -50,23 +56,18 @@ export class ComponenteCriarFuncionario implements OnInit {
         });
     }
 
-    open(content: any) {
-        this.modalService.open(content, {
-            windowClass: 'modal-mini modal-primary', size: 'sm' }).result.then((result: any) => {
-            this.closeResult = `Closed with: ${result}`;
-        },
-        (reason: any) => {
-            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        });
-    }
+    openModal(modalType: string): void {
+        if(!modalType) return;
 
-    private getDismissReason(reason: any): string {
-        if (reason === ModalDismissReasons.ESC) {
-            return 'by pressing ESC';
-        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-            return 'by clicking on a backdrop';
-        } else {
-            return  `with: ${reason}`;
+        if(modalType === 'modalCancel'){
+            this.modalRef = this.modalMdbService.open(ComponenteModalCancel, { data: { routeReturn: "/funcionario/listar" } })
+        }
+        else if(modalType === 'modalConfirm'){
+            this.modalRef = this.modalMdbService.open(ComponenteModalConfirm)
+            this.modalRef.onClose.subscribe((saveConfirm: any) => {
+                console.log(saveConfirm);
+                if(saveConfirm === true) this.salvarCadastro()
+            });
         }
     }
 

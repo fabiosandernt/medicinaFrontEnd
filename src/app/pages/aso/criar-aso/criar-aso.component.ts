@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalDismissReasons, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ASOService } from '../../../shared/services/aso.service';
 import { Aso } from '../../../shared/models/aso';
 import { Router } from '@angular/router';
+
+import { ComponenteModalCancel, ComponenteModalConfirm } from '../../../components/components.module';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 @Component({
   selector: 'app-criar-aso',
@@ -20,18 +23,20 @@ export class ComponenteCriarASO implements OnInit {
     modelDataNascimento: NgbDateStruct;
     modelDataExame: NgbDateStruct;
 
+    modalRef: MdbModalRef<ComponenteModalCancel | ComponenteModalConfirm> | null = null;
+
     constructor(
-        private _modalService: NgbModal,
         private _formBuilder: FormBuilder,
         private _asoService: ASOService,
-        private _router: Router
+        private _router: Router,
+        private _modalMdbService: MdbModalService
     ) {}
 
     ngOnInit(): void {
         this.initForm()
     }
 
-    initForm() {
+    initForm(): void {
         this.form = this._formBuilder.group({
             nome: [this.aso?.nome, [Validators.required, Validators.maxLength(50)]],
             cpf: [this.aso?.cpf, [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
@@ -47,29 +52,24 @@ export class ComponenteCriarASO implements OnInit {
         });
     }
 
-    open(content: any) {
-        this._modalService.open(content, {
-            windowClass: 'modal-mini modal-primary', size: 'sm' }).result.then((result: any) => {
-            this.closeResult = `Closed with: ${result}`;
-        },
-        (reason: any) => {
-            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        });
-    }
-
-    private getDismissReason(reason: any): string {
-        if (reason === ModalDismissReasons.ESC) {
-            return 'by pressing ESC';
-        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-            return 'by clicking on a backdrop';
-        } else {
-            return  `with: ${reason}`;
-        }
-    }
-
-    public alterarTipo(e: any) {
+    public alterarTipo(e: any): void {
         this.tipoExame = e.target.value;
         console.log(this.tipoExame);
+    }
+
+    openModal(modalType: string): void {
+        if(!modalType) return;
+
+        if(modalType === 'modalCancel'){
+            this.modalRef = this._modalMdbService.open(ComponenteModalCancel, { data: { routeReturn: "/empresa/listar" } })
+        }
+        else if(modalType === 'modalConfirm'){
+            this.modalRef = this._modalMdbService.open(ComponenteModalConfirm)
+            this.modalRef.onClose.subscribe((saveConfirm: any) => {
+                console.log(saveConfirm);
+                if(saveConfirm === true) this.salvarCadastro()
+            });
+        }
     }
 
     salvarCadastro() {
