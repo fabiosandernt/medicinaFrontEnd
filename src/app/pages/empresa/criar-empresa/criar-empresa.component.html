@@ -6,7 +6,11 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="title"> Adicionar Empresa </h5>
-                    <button class="btn btn-primary btn-simple btn-round" type="button" (click)="openModal()"> Cancelar </button>
+                    <button
+                        class="btn btn-danger btn-simple btn-round"
+                        type="button"
+                        (click)="openModal('modalCancel')"
+                    > Cancelar </button>
                 </div>
 
                 <div class="card-body">
@@ -110,63 +114,24 @@
                 </div>
 
                 <div class="card-footer">
-                    <button class="btn btn-primary btn-round" type="button" [disabled]="!form.valid"> Salvar </button>
+                    <button
+                        class="btn btn-primary btn-round"
+                        type="button"
+                        [disabled]="!form.valid"
+                        (click)="openModal('modalConfirm')"
+                    > Salvar </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<ng-template #contentModalCancel let-modal>
-    <div class="modal-header justify-content-center">
-        <div class="modal-profile">
-            <i class="now-ui-icons ui-1_simple-remove"></i>
-        </div>
-    </div>
-    <div class="modal-body">
-        <p> Deseja realmente sair? Todos os dados não salvos, serão perdidos.
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-round" (click)="modalService.dismiss('Cross click')"> Voltar </button>
-        <button type="button" class="btn btn-round" (click)="modalService.close('Ok click')"> Continuar </button>
-    </div>
+<!-- <ng-template #modalCancel>
+    <app-modal-cancel [routeReturn]="'/empresa/listar'"></app-modal-cancel>
 </ng-template>
 
-<ng-template #content_confirm let-modal>
-    <div class="modal-header justify-content-center">
-        <div class="modal-profile">
-            <i class="now-ui-icons ui-1_check"></i>
-        </div>
-    </div>
-    <div class="modal-body">
-        <p> Deseja realmente salvar? Está ação não poderá ser desfeita.
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-link btn-neutral" (click)="modal.close('Close click')" > Voltar </button>
-        <button type="button" class="btn btn-link btn-neutral" (click)="modal.close('Save click')"> Continuar </button>
-    </div>
-</ng-template>
+<ng-template #modalConfirm>
+    <app-modal-confirm (saveConfirm)="'_salvarCadastro'"></app-modal-confirm>
+</ng-template> -->
 
-<!--
-    tipo usuario - clinica, admin, cliente,
-    email,
-    nome do responsavel,
-    senha
--->
 
-<!--
-    CNPJ,
-    razao social,
-    nome,
-    funcao,
-    setor,
-    CPF,
-    Data nascimento,
-    matricula do e-social,
-    risco tipo - 1, 2, 3,
-    tipo exame,
-        IF - admissional -> data admissao,
-        IF - demissional -> data demissao,
-        IF - periodico ->   data admissao,
-    PIS
--->
