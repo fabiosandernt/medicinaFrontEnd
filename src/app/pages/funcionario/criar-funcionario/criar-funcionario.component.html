@@ -20,6 +20,7 @@
                                 [ngClass]="
                                     form.controls.cnpj?.errors?.required ||
                                     form.controls.cnpj?.errors?.minlength ||
+                                    form.controls.cnpj?.errors?.pattern ||
                                     form.controls.cnpj?.errors?.maxlength &&
                                     form.dirty ? 'has-danger' : 'has-success'"
                                 >
@@ -62,6 +63,7 @@
                                     [ngClass]="
                                     form.controls.cpf?.errors?.required ||
                                     form.controls.cpf?.errors?.minlength ||
+                                    form.controls.cpf?.errors?.pattern ||
                                     form.controls.cpf?.errors?.maxlength &&
                                     form.dirty ? 'has-danger' : 'has-success'"
                                 >
@@ -109,6 +111,7 @@
                             <div class="col-md-3 pr-md-1">
                                 <div class="form-group"
                                 [ngClass]="
+                                    form.controls.esocial?.errors?.pattern ||
                                     form.controls.esocial?.errors?.maxlength &&
                                     form.dirty ? 'has-danger' : 'has-success'"
                                 >
@@ -119,6 +122,7 @@
                             <div class="col-md-3">
                                 <div class="form-group"
                                 [ngClass]="
+                                    form.controls.pis?.errors?.pattern ||
                                     form.controls.pis?.errors?.minlength ||
                                     form.controls.pis?.errors?.maxlength &&
                                     form.dirty ? 'has-danger' : 'has-success'"

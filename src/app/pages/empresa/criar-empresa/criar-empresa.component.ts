@@ -37,10 +37,23 @@ export class ComponenteCriarEmpresa implements OnInit {
 
     initForm(): void {
         this.form = this.formBuilder.group({
-            cnpj: [this.empresa?.cnpj, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
+            cnpj: [this.empresa?.cnpj, [
+                Validators.required,
+                Validators.minLength(14),
+                Validators.maxLength(14),
+                Validators.pattern("^[0-9]*$")
+            ]],
             razaoSocial: [this.empresa?.razaoSocial, [Validators.required]],
-            celular: [this.empresa?.celular, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
-            telefone: [this.empresa?.telefone, [Validators.maxLength(9)]],
+            celular: [this.empresa?.celular, [
+                Validators.required,
+                Validators.minLength(9),
+                Validators.maxLength(9),
+                Validators.pattern("^[0-9]*$")
+            ]],
+            telefone: [this.empresa?.telefone, [
+                Validators.maxLength(9),
+                Validators.pattern("^[0-9]*$")
+            ]],
             risco: [this.empresa?.risco],
             endereco: [this.empresa?.endereco, [Validators.maxLength(50)]],
             email: [this.empresa?.email,

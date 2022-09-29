@@ -42,15 +42,35 @@ export class ComponenteCriarFuncionario implements OnInit {
 
     initForm(): void {
         this.form = this._formBuilder.group({
-            nome: [this.funcionario?.nome, [Validators.required, Validators.maxLength(50)]],
-            cpf: [this.funcionario?.cpf, [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+            nome: [this.funcionario?.nome, [
+                Validators.required,
+                Validators.maxLength(50)
+            ]],
+            cpf: [this.funcionario?.cpf, [
+                Validators.required,
+                Validators.minLength(11),
+                Validators.maxLength(11),
+                Validators.pattern("^[0-9]*$")
+            ]],
             dataNascimento: [this.funcionario?.dataNascimento, [Validators.required]],
             funcao: [this.funcionario?.funcao],
-            cnpj: [this.funcionario?.cnpj, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
+            cnpj: [this.funcionario?.cnpj, [
+                Validators.required,
+                Validators.minLength(14),
+                Validators.maxLength(14),
+                Validators.pattern("^[0-9]*$")
+            ]],
             razaoSocial: [this.funcionario?.razaoSocial],
             setor: [this.funcionario?.setor, [Validators.maxLength(30)]],
-            esocial: [this.funcionario?.esocial, [Validators.maxLength(20)]],
-            pis: [this.funcionario?.pis, [Validators.minLength(11), Validators.maxLength(11)]],
+            esocial: [this.funcionario?.esocial, [
+                Validators.maxLength(20),
+                Validators.pattern("^[0-9]*$")
+            ]],
+            pis: [this.funcionario?.pis, [
+                Validators.minLength(11),
+                Validators.maxLength(11),
+                Validators.pattern("^[0-9]*$")
+            ]],
             exame: [this.funcionario?.exame, [Validators.required]],
             dataExame: [this.funcionario?.dataExame, [Validators.required]],
         });

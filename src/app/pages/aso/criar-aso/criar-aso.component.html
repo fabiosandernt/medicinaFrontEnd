@@ -16,11 +16,12 @@
                                 [ngClass]="
                                     form.controls.cnpj?.errors?.required ||
                                     form.controls.cnpj?.errors?.minlength ||
+                                    form.controls.cnpj?.errors?.pattern ||
                                     form.controls.cnpj?.errors?.maxlength &&
                                     form.dirty ? 'has-danger' : 'has-success'"
                                 >
                                     <label> CNPJ </label>
-                                    <input type="text" class="form-control" placeholder="somente números" maxlength="14" minlength="14" formControlName="cnpj">
+                                    <input type="numberFormat" class="form-control" placeholder="somente números" maxlength="14" minlength="14" formControlName="cnpj">
                                 </div>
                             </div>
                             <div class="col-md-6 pr-md-1">
@@ -58,7 +59,8 @@
                                     [ngClass]="
                                     form.controls.cpf?.errors?.required ||
                                     form.controls.cpf?.errors?.minlength ||
-                                    form.controls.cpf?.errors?.maxlength &&
+                                    form.controls.cpf?.errors?.maxlength ||
+                                    form.controls.cpf?.errors?.pattern &&
                                     form.dirty ? 'has-danger' : 'has-success'"
                                 >
                                     <label> CPF </label>
@@ -105,6 +107,7 @@
                             <div class="col-md-3 pr-md-1">
                                 <div class="form-group"
                                 [ngClass]="
+                                    form.controls.esocial?.errors?.pattern ||
                                     form.controls.esocial?.errors?.maxlength &&
                                     form.dirty ? 'has-danger' : 'has-success'"
                                 >
@@ -116,6 +119,7 @@
                                 <div class="form-group"
                                 [ngClass]="
                                     form.controls.pis?.errors?.minlength ||
+                                    form.controls.pis?.errors?.pattern ||
                                     form.controls.pis?.errors?.maxlength &&
                                     form.dirty ? 'has-danger' : 'has-success'"
                                 >

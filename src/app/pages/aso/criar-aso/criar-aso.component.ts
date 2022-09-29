@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 
 import { ComponenteModalCancel, ComponenteModalConfirm } from '../../../components/components.module';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { NumberFormatStyle } from '@angular/common';
 
 @Component({
   selector: 'app-criar-aso',
@@ -39,14 +40,31 @@ export class ComponenteCriarASO implements OnInit {
     initForm(): void {
         this.form = this._formBuilder.group({
             nome: [this.aso?.nome, [Validators.required, Validators.maxLength(50)]],
-            cpf: [this.aso?.cpf, [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+            cpf: [this.aso?.cpf, [
+                Validators.required,
+                Validators.minLength(11),
+                Validators.maxLength(11),
+                Validators.pattern("^[0-9]*$")
+            ]],
             dataNascimento: [this.aso?.dataNascimento, [Validators.required]],
             funcao: [this.aso?.funcao],
-            cnpj: [this.aso?.cnpj, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
+            cnpj: [this.aso?.cnpj, [
+                Validators.required,
+                Validators.minLength(14),
+                Validators.maxLength(14),
+                Validators.pattern("^[0-9]*$")
+            ]],
             razaoSocial: [this.aso?.razaoSocial],
             setor: [this.aso?.setor, [Validators.maxLength(30)]],
-            esocial: [this.aso?.esocial, [Validators.maxLength(20)]],
-            pis: [this.aso?.pis, [Validators.minLength(11), Validators.maxLength(11)]],
+            esocial: [this.aso?.esocial, [
+                Validators.maxLength(20),
+                Validators.pattern("^[0-9]*$")
+            ]],
+            pis: [this.aso?.pis, [
+                Validators.minLength(11),
+                Validators.maxLength(11),
+                Validators.pattern("^[0-9]*$")
+            ]],
             exame: [this.aso?.exame, [Validators.required]],
             dataExame: [this.aso?.dataExame, [Validators.required]],
         });
