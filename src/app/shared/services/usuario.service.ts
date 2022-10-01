@@ -15,25 +15,25 @@ export class UsuarioService {
 
         if (values.id) {
             return this._httpClient.put<any>(
-                `user/update-user/${values.id}`, values
+                `Usuario/${values.id}`, values
             ).pipe(catchError(this._httpError.handleError));
         }
 
         return this._httpClient.post<any>(
-            "user/create-user", values
+            "Usuario", values
         ).pipe(catchError(this._httpError.handleError));
     }
 
     Listar(): Observable<any> {
         return this._httpClient.get<any>(
-            `user/list-user`
+            `Usuario`
         ).pipe(catchError(this._httpError.handleError));
     }
 
     ListarPorId(id: any): Observable<any>{
         if(id !== null) {
             return this._httpClient.get<any> (
-                `user/list-user/${id}`
+                `Usuario/${id}/ObterPorId`
             ).pipe(catchError(this._httpError.handleError));
         }
     }
@@ -41,7 +41,7 @@ export class UsuarioService {
     Deletar(id: any): Observable<any>{
         if(id !== null) {
             return this._httpClient.delete<any> (
-                `user/delete-user/${id}`
+                `Usuario/${id}`
             ).pipe(catchError(this._httpError.handleError));
         }
     }

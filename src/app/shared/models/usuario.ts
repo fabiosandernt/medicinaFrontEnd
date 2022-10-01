@@ -1,7 +1,12 @@
 export declare interface Usuario {
-    id?: number;
-    nome: string;
-    tipo: number;
-    senha: string;
-    email: string;
+    id?: string;
+    name: string;
+    tipoUsuario: number;
+    password: {
+        valor: string;
+    }
+    email: {
+        valor: string;
+    }
+    token?: string;
 }

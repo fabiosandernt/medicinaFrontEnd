@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
 
 @Injectable()
-export class JWTTokenService {
+export class JWTService {
 
     jwtToken: string;
     decodedToken: { [key: string]: string };
@@ -10,38 +10,35 @@ export class JWTTokenService {
     constructor() {}
 
     setToken(token: string) {
-        if (token) {
-            this.jwtToken = token;
-        }
+        if (token) this.jwtToken = token;
     }
 
-    decodeToken() {
-        if (this.jwtToken) {
-            this.decodedToken = jwt_decode(this.jwtToken);
-        }
+    decodeToken(token: string) {
+        if (token) return jwt_decode(token);
     }
 
-    getDecodeToken() {
-        return jwt_decode(this.jwtToken);
-    }
+    // getName() {
+    //     this.decodeToken();
+    //     return this.decodedToken ? this.decodedToken.name : null;
+    // }
 
-    getUser() {
-        this.decodeToken();
-        return this.decodedToken ? this.decodedToken.user : null;
-    }
+    // getEmail() {
+    //     this.decodeToken();
+    //     return this.decodedToken ? this.decodedToken.email : null;
+    // }
 
-    getEmailId() {
-        this.decodeToken();
-        return this.decodedToken ? this.decodedToken.email : null;
-    }
+    // getTipoUsuario() {
+    //     this.decodeToken();
+    //     return this.decodedToken ? this.decodedToken.tipoUsuario : null;
+    // }
 
-    getExpiryTime() {
-        this.decodeToken();
-        return this.decodedToken ? this.decodedToken.exp : null;
-    }
+    // getExpiryTime() {
+    //     this.decodeToken();
+    //     return this.decodedToken ? this.decodedToken.exp : null;
+    // }
 
     isTokenExpired(): boolean {
-        const expiryTime: number = Number(this.getExpiryTime());
+        const expiryTime: number = Number(this.decodedToken.exp);
 
         if (expiryTime) return ((1000 * expiryTime) - (new Date()).getTime()) < 5000;
         else return false;

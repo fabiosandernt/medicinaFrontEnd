@@ -34,10 +34,10 @@ export class ComponenteCriarUsuario implements OnInit {
 
     initForm(): void {
         this.form = this._formBuilder.group({
-            nome: [this.usuario?.nome, [Validators.required, Validators.maxLength(30)]],
-            tipo: [this.usuario?.tipo, [Validators.required]],
-            senha: [this.usuario?.tipo, [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
-            email: [this.usuario?.email, [
+            nome: [this.usuario?.name, [Validators.required, Validators.maxLength(30)]],
+            tipo: [this.usuario?.tipoUsuario, [Validators.required]],
+            senha: [this.usuario?.password.valor, [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
+            email: [this.usuario?.email.valor, [
                 Validators.required,
                 Validators.pattern("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+).(\.[a-z]{2,3})$"),
                 Validators.maxLength(50)
@@ -67,10 +67,14 @@ export class ComponenteCriarUsuario implements OnInit {
 
         const usuarioData: Usuario = {
             id: this.usuario?.id,
-            nome: formData.nome,
-            tipo: formData.tipo,
-            senha: formData.senha,
-            email: formData.email
+            name: formData.nome,
+            tipoUsuario: formData.tipo,
+            password: {
+                valor: formData.senha
+            },
+            email: {
+                valor: formData.email
+            },
         }
 
         return this._usuarioService.Salvar(usuarioData).subscribe({

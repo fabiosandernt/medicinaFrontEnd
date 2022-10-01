@@ -1,38 +1,38 @@
- import { Injectable } from '@angular/core';
- import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTree } from '@angular/router';
- import { Observable } from 'rxjs';
- import { JWTTokenService } from '../services/jwtToken.service';
- import { LocalStorageService } from '../services/localStorage.service';
- import { LoginService } from '../services/login.service';
+import { Injectable } from '@angular/core';
+
+import {
+    CanActivate,
+    ActivatedRouteSnapshot,
+    RouterStateSnapshot,
+    Router,
+    UrlTree
+} from '@angular/router';
+
+import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+import { JWTService } from '../services/jwtToken.service';
 
 @Injectable({
     providedIn: 'root'
 })
  export class AuthorizeGuard implements CanActivate {
     constructor(
-        private loginService: LoginService,
-        private authStorageService: LocalStorageService,
-        private jwtService: JWTTokenService,
-        private _router: Router
+        private jwtService: JWTService,
+        private _router: Router,
+        private authService: AuthService
     ) {}
 
-    canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot):
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
     {
-        if (this.jwtService.getUser()) {
-            if (this.jwtService.isTokenExpired()) return this._router.navigate(["/auth/login"]);
+        if (this.authService.isLoggedIn) {
+            if (this.jwtService.isTokenExpired())
+            {
+                return this._router.navigate(["/auth/login"]);
+            }
             else return true;
         }
-        else return false
-
-        // else {
-        //     return new Promise((resolve: any) => {
-        //         this.loginService.signIncallBack().then((e: any) => {
-        //             resolve(true);
-        //         }).catch((e: any) => {
-        //             return this._router.navigate(["/auth/login"]);
-        //         });
-        //     });
-        // }
+        this._router.navigate(['/auth/login'], { queryParams: { returnUrl: state.url } });
+        return false
     }
 }
