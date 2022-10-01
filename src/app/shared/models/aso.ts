@@ -11,4 +11,5 @@ export declare interface Aso {
     pis: string;
     exame: number;
     dataExame: Date;
+    anexoImagem: string;
 }

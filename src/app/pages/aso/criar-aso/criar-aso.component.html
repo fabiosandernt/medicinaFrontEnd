@@ -189,6 +189,34 @@
                             </div>
                         </div>
                     </form>
+
+                    <div class="row">
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label for=""> Imagem </label>
+                                <button class="btn btn-primary btn-round" type="file" >
+                                    Adicionar
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        class="form-control"
+                                        placeholder="Imagem"
+                                        (change)="onImageChange($event)"
+                                    >
+                                </button>
+                                <p> {{ imagemSelecionada }} </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="imagemSrc != ''">
+                        <div class="col-md-3 pr-md-1">
+                            <img [src]="imagemSrc" class="img-thumbnail">
+                            <button class="btn btn-danger btn-icon btn-round" type="button" (click)="removerImagem()">
+                                <i class="now-ui-icons tim-icons icon-trash-simple"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card-footer">

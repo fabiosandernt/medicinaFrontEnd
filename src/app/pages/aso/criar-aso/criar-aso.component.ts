@@ -26,6 +26,9 @@ export class ComponenteCriarASO implements OnInit {
 
     modalRef: MdbModalRef<ComponenteModalCancel | ComponenteModalConfirm> | null = null;
 
+    imagemSrc: string = '';
+    imagemSelecionada: string = '';
+
     constructor(
         private _formBuilder: FormBuilder,
         private _asoService: ASOService,
@@ -67,12 +70,43 @@ export class ComponenteCriarASO implements OnInit {
             ]],
             exame: [this.aso?.exame, [Validators.required]],
             dataExame: [this.aso?.dataExame, [Validators.required]],
+            anexoImagem: ({
+                imagem: [''],
+                imagemSource: ['']
+            })
         });
     }
 
     public alterarTipo(e: any): void {
         this.tipoExame = e.target.value;
         console.log(this.tipoExame);
+    }
+
+    onImageChange(event: any) {
+        const reader = new FileReader();
+
+        if(event.target.files && event.target.files.length) {
+            const [file] = event.target.files;
+            this.imagemSelecionada = file.name;
+
+            reader.readAsDataURL(file);
+
+            reader.onload = () => {
+                this.imagemSrc = reader.result as string;
+                this.form.patchValue({
+                    imagemSource: reader.result
+                });
+            };
+        }
+    }
+
+    removerImagem(): void {
+        this.imagemSelecionada = '';
+        this.imagemSrc = '';
+
+        this.form.patchValue({
+            imagemSource: ''
+        });
     }
 
     openModal(modalType: string): void {
@@ -107,7 +141,8 @@ export class ComponenteCriarASO implements OnInit {
             esocial: formData.esocial,
             pis: formData.pis,
             exame: formData.exame,
-            dataExame: formData.dataExame
+            dataExame: formData.dataExame,
+            anexoImagem: formData.anexoImagem.imagemSource,
         }
 
         return this._asoService.Salvar(asoData).subscribe({
