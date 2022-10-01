@@ -13,25 +13,25 @@ export class ASOService {
 
         if (values.id) {
             return this._httpClient.put<any>(
-                `aso/update-aso/${values.id}`, values
+                `Aso/${values.id}`, values
             );
         }
 
         return this._httpClient.post<any>(
-            "aso/create-aso", values
+            "Aso/", values
         );
     }
 
     Listar(): Observable<any> {
         return this._httpClient.get<any>(
-            `aso/list-aso`
+            `Aso`
         );
     }
 
     ListarPorId(id: any): Observable<any>{
         if(id !== null) {
             return this._httpClient.get<any> (
-                `aso/list-aso/${id}`
+                `Aso/${id}`
             )
         }
     }
@@ -39,7 +39,7 @@ export class ASOService {
     Deletar(id: any): Observable<any>{
         if(id !== null) {
             return this._httpClient.delete<any> (
-                `aso/delete-aso/${id}`
+                `Aso/${id}`
             )
         }
     }

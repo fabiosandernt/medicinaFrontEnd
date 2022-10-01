@@ -42,7 +42,7 @@ export class AuthService {
     }
 
     login(data: any) {
-        return this.http.post<any>('/Usuario', { data }).pipe(map(
+        return this.http.post<any>('/Authentication', { data }).pipe(map(
         result => {
             this.localStorageService.set('SSID', JSON.stringify(result));
 

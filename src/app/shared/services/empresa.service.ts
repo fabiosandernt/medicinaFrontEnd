@@ -13,25 +13,25 @@ export class EmpresaService {
 
         if (values.id) {
             return this._httpClient.put<any>(
-                `company/update-company/${values.id}`, values
+                `Empresa/${values.id}`, values
             );
         }
 
         return this._httpClient.post<any>(
-            "company/create-company", values
+            "Empresa/", values
         );
     }
 
     Listar(): Observable<any> {
         return this._httpClient.get<any>(
-            `company/list-companies`
+            `Empresa`
         );
     }
 
     ListarPorId(id: any): Observable<any>{
         if(id !== null) {
             return this._httpClient.get<any> (
-                `company/list-company/${id}`
+                `Empresa/${id}`
             )
         }
     }
@@ -39,7 +39,7 @@ export class EmpresaService {
     Deletar(id: any): Observable<any>{
         if(id !== null) {
             return this._httpClient.delete<any> (
-                `company/delete-company/${id}`
+                `Empresa/${id}`
             )
         }
     }

@@ -13,25 +13,25 @@ export class FuncionarioService {
 
         if (values.id) {
             return this._httpClient.put<any>(
-                `employee/update-employee/${values.id}`, values
+                `Funcionario/${values.id}`, values
             );
         }
 
         return this._httpClient.post<any>(
-            "employee/create-employee", values
+            "Funcionario/", values
         );
     }
 
     Listar(): Observable<any> {
         return this._httpClient.get<any>(
-            `employee/list-employees`
+            `Funcionario/`
         );
     }
 
     ListarPorId(id: any): Observable<any>{
         if(id !== null) {
             return this._httpClient.get<any> (
-                `employee/list-employee/${id}`
+                `Funcionario/${id}`
             )
         }
     }
@@ -39,7 +39,7 @@ export class FuncionarioService {
     Deletar(id: any): Observable<any>{
         if(id !== null) {
             return this._httpClient.delete<any> (
-                `employee/delete-employee/${id}`
+                `Funcionario/${id}`
             )
         }
     }
