@@ -71,7 +71,7 @@ export class ComponenteCriarFuncionario implements OnInit {
                 Validators.maxLength(11),
                 Validators.pattern("^[0-9]*$")
             ]],
-            exame: [this.funcionario?.exame, [Validators.required]],
+            exame: [this.funcionario?.tipoExame, [Validators.required]],
             dataExame: [this.funcionario?.dataExame, [Validators.required]],
         });
     }
@@ -112,7 +112,7 @@ export class ComponenteCriarFuncionario implements OnInit {
             setor: formData.setor,
             esocial: formData.esocial,
             pis: formData.pis,
-            exame: formData.exame,
+            tipoExame: formData.exame,
             dataExame: formData.dataExame
         }
 

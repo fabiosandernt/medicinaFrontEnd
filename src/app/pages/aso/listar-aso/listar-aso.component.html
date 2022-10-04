@@ -30,7 +30,7 @@
                                 </th>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr *ngFor="let aso of asos" >
                                     <td class="d-flex" style="justify-content: space-evenly">
                                         <button class="btn btn-primary btn-icon btn-round" type="button">
                                             <i class="now-ui-icons tim-icons icon-pencil"></i>
@@ -41,16 +41,16 @@
                                         </button>
                                     </td>
                                     <td>
-                                        Teste Indústrias Ltda
+                                        {{ aso.razaoSocial || 'Teste Indústrias Ltda' }}
                                     </td>
                                     <td>
-                                        Fabricio
+                                        {{ aso.nome || 'Fabricio' }}
                                     </td>
                                     <td>
-                                        Admissional
+                                        {{ aso.tipoExame || 'Admissional' }}
                                     </td>
                                     <td>
-                                        01/01/2022
+                                        {{ aso.dataExame || '01/01/2022' }}
                                     </td>
                                     <td class="text-right">
                                         <span class="badge badge-success"> Realizado </span>

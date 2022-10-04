@@ -93,7 +93,9 @@ export class ComponenteCriarEmpresa implements OnInit {
             telefone: formData.telefone,
             risco: formData.risco,
             endereco: formData.endereco,
-            email: formData.email
+            email: {
+                valor: formData.email
+            }
         }
 
         return this.empresaService.Salvar(empresaData).subscribe({

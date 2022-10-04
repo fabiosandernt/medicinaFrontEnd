@@ -68,7 +68,7 @@ export class ComponenteCriarASO implements OnInit {
                 Validators.maxLength(11),
                 Validators.pattern("^[0-9]*$")
             ]],
-            exame: [this.aso?.exame, [Validators.required]],
+            exame: [this.aso?.tipoExame, [Validators.required]],
             dataExame: [this.aso?.dataExame, [Validators.required]],
             anexoImagem: ({
                 imagem: [''],
@@ -93,6 +93,8 @@ export class ComponenteCriarASO implements OnInit {
 
             reader.onload = () => {
                 this.imagemSrc = reader.result as string;
+                console.log(this.imagemSrc)
+
                 this.form.patchValue({
                     imagemSource: reader.result
                 });
@@ -140,7 +142,7 @@ export class ComponenteCriarASO implements OnInit {
             setor: formData.setor,
             esocial: formData.esocial,
             pis: formData.pis,
-            exame: formData.exame,
+            tipoExame: formData.exame,
             dataExame: formData.dataExame,
             anexoImagem: formData.anexoImagem.imagemSource,
         }
