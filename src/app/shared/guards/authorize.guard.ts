@@ -11,6 +11,7 @@ import {
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { JWTService } from '../services/jwtToken.service';
+import { LocalStorageService } from '../services/localStorage.service';
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +20,8 @@ import { JWTService } from '../services/jwtToken.service';
     constructor(
         private jwtService: JWTService,
         private _router: Router,
-        private authService: AuthService
+        private authService: AuthService,
+        private localStorageService: LocalStorageService
     ) {}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):

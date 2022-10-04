@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { JWTService } from '../services/jwtToken.service';
 import { AuthService } from '../services/auth.service';
 
-@Injectable()
+@Injectable({
+    providedIn:'root'
+})
+
 export class HttpRequestInterceptor implements HttpInterceptor {
     constructor(private jwtService: JWTService, private authService: AuthService) {}
 
