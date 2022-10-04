@@ -1,5 +1,5 @@
 export declare interface Funcionario {
-    id?: number;
+    id?: string;
     nome: string;
     cpf: string;
     dataNascimento: Date;
@@ -9,6 +9,6 @@ export declare interface Funcionario {
     setor: string;
     esocial: string;
     pis: string;
-    exame: number;
+    tipoExame: number;
     dataExame: Date;
 }

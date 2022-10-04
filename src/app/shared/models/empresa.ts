@@ -1,10 +1,12 @@
 export declare interface Empresa {
-    id?: number;
+    id?: string;
     cnpj: string;
     razaoSocial: string;
     celular: string;
     telefone: string;
     risco: number;
     endereco: string;
-    email: string;
+    email: {
+        valor: string;
+    }
 }
