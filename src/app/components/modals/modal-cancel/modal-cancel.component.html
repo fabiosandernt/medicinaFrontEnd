@@ -1,14 +1,20 @@
-<ng-template #modal_mini_cancel let-c="close" let-d="dismiss">
+<div class="modal modal-content">
     <div class="modal-header justify-content-center">
-        <div class="modal-profile">
-            <i class="now-ui-icons ui-1_simple-remove"></i>
+        <div class="shape-round">
+            <i class="now-ui-icons ui-1_simple-remove" style="color: #fff; font-size: xx-large;"></i>
         </div>
     </div>
     <div class="modal-body">
         <p> Deseja realmente sair? Todos os dados não salvos, serão perdidos.
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-link btn-neutral"> Voltar </button>
-        <button type="button" class="btn btn-link btn-neutral" (click)="c('Close click')"> Continuar </button>
+        <button type="button" class="btn btn-primary btn-simple btn-round" (click)="modalRef.close()"> Voltar </button>
+        <button type="button" class="btn btn-danger btn-round" (click)="modalRef.close(); routing()"> Continuar </button>
     </div>
-</ng-template>
+</div>
+
+
+
+
+
+

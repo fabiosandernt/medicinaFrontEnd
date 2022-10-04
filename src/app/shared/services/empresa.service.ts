@@ -7,39 +7,39 @@ import { Observable } from 'rxjs';
 })
 
 export class EmpresaService {
-    constructor(private httpClient: HttpClient) {}
+    constructor(private _httpClient: HttpClient) {}
 
     Salvar(values: any): Observable<any> {
 
         if (values.id) {
-            return this.httpClient.put<any>(
-                `company/update-company/${values.id}`, values
+            return this._httpClient.put<any>(
+                `Empresa/${values.id}`, values
             );
         }
 
-        return this.httpClient.post<any>(
-            "company/create-company", values
+        return this._httpClient.post<any>(
+            "Empresa/", values
         );
     }
 
     Listar(): Observable<any> {
-        return this.httpClient.get<any>(
-            `company/list-companies`
+        return this._httpClient.get<any>(
+            `Empresa`
         );
     }
 
     ListarPorId(id: any): Observable<any>{
         if(id !== null) {
-            return this.httpClient.get<any> (
-                `company/list-company/${id}`
+            return this._httpClient.get<any> (
+                `Empresa/${id}`
             )
         }
     }
 
     Deletar(id: any): Observable<any>{
         if(id !== null) {
-            return this.httpClient.delete<any> (
-                `company/delete-company/${id}`
+            return this._httpClient.delete<any> (
+                `Empresa/${id}`
             )
         }
     }

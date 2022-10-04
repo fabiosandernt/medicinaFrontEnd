@@ -6,7 +6,11 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="title">Adicionar Usuário</h5>
-                    <button class="btn btn-primary btn-simple btn-round" type="button"> Cancelar </button>
+                    <button
+                        class="btn btn-danger btn-simple btn-round"
+                        type="button"
+                        (click)="openModal('modalCancel')"
+                    > Cancelar </button>
                 </div>
 
                 <div class="card-body">
@@ -66,7 +70,12 @@
                 </div>
 
                 <div class="card-footer">
-                    <button class="btn btn-primary btn-round" type="button" [disabled]="!form.valid"> Salvar </button>
+                    <button
+                        class="btn btn-primary btn-round"
+                        type="button"
+                        [disabled]="!form.valid"
+                        (click)="openModal('modalConfirm')"
+                    > Salvar </button>
                 </div>
             </div>
         </div>

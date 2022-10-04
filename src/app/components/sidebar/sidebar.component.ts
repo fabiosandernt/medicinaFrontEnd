@@ -26,7 +26,7 @@ export const ROUTES: RouteInfo[] = [
         idMenu: true
     },
     {
-        path: '/aso/criar',
+        path: '/aso/listar',
         title: 'ASO',
         icon: 'files_paper',
         class: '',

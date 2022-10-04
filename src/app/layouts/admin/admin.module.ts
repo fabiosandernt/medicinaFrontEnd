@@ -17,6 +17,11 @@ import { ComponenteCriarEmpresa } from '../../pages/empresa/criar-empresa/criar-
 import { ComponenteCriarASO } from '../../pages/aso/criar-aso/criar-aso.component';
 
 import { MatDialogModule } from "@angular/material/dialog";
+import { ComponenteListarASO } from '../../pages/aso/listar-aso/listar-aso.component';
+
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal'
+import { ComponentsModule } from 'src/app/components/components.module';
+
 
 @NgModule({
     imports: [
@@ -27,7 +32,9 @@ import { MatDialogModule } from "@angular/material/dialog";
         ChartsModule,
         NgbModule,
         ToastrModule.forRoot(),
-        MatDialogModule
+        MatDialogModule,
+        MdbModalModule,
+        ComponentsModule
     ],
     declarations: [
         DashboardComponent,
@@ -37,7 +44,8 @@ import { MatDialogModule } from "@angular/material/dialog";
         ComponenteCriarFuncionario,
         ComponenteListarFuncionario,
         ComponenteCriarUsuario,
-        ComponenteCriarASO
+        ComponenteCriarASO,
+        ComponenteListarASO
     ]
 })
 

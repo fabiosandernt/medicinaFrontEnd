@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+
+import { ComponenteModalCancel, ComponenteModalConfirm } from '../../../components/components.module';
+
 import { Empresa } from '../../../shared/models/empresa';
 import { EmpresaService } from '../../../shared/services/empresa.service';
 
@@ -16,18 +18,16 @@ export class ComponenteCriarEmpresa implements OnInit {
     form: FormGroup;
     empresa: Empresa;
 
+    modalRef: MdbModalRef<ComponenteModalCancel | ComponenteModalConfirm> | null = null;
+    //modalConfirmRef: MdbModalRef<ComponenteModalConfirm> | null = null;
+
     constructor(
-        private modalService: NgbModal,
         private formBuilder: FormBuilder,
         private router: Router,
         private activatedRouter: ActivatedRoute,
         private empresaService: EmpresaService,
-        public dialog: MatDialog,
+        private modalMdbService: MdbModalService
     ) {}
-
-    // openModal(): void {
-    //     this.dialog.open(ComponenteModalMat, { width: '250px' });
-    // }
 
     ngOnInit(): void {
         this.empresa = this.activatedRouter.snapshot.data.empresa != undefined ? this.activatedRouter.snapshot.data.empresa : {};
@@ -35,45 +35,52 @@ export class ComponenteCriarEmpresa implements OnInit {
         this.initForm()
     }
 
-    initForm() {
+    initForm(): void {
         this.form = this.formBuilder.group({
-            cnpj: [this.empresa?.cnpj, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
+            cnpj: [this.empresa?.cnpj, [
+                Validators.required,
+                Validators.minLength(14),
+                Validators.maxLength(14),
+                Validators.pattern("^[0-9]*$")
+            ]],
             razaoSocial: [this.empresa?.razaoSocial, [Validators.required]],
-            celular: [this.empresa?.celular, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
-            telefone: [this.empresa?.telefone, [Validators.maxLength(9)]],
+            celular: [this.empresa?.celular, [
+                Validators.required,
+                Validators.minLength(9),
+                Validators.maxLength(9),
+                Validators.pattern("^[0-9]*$")
+            ]],
+            telefone: [this.empresa?.telefone, [
+                Validators.maxLength(9),
+                Validators.pattern("^[0-9]*$")
+            ]],
             risco: [this.empresa?.risco],
             endereco: [this.empresa?.endereco, [Validators.maxLength(50)]],
-            email: [this.empresa?.email, [Validators.required, Validators.pattern("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+).(\.[a-z]{2,3})$"), Validators.maxLength(50)]],
+            email: [this.empresa?.email,
+            [
+                Validators.required,
+                Validators.pattern("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+).(\.[a-z]{2,3})$"),
+                Validators.maxLength(50)
+            ]],
         });
     }
 
-    open(content: any) {
-        //this.modalService.open(content, { windowClass: 'modal-mini modal-primary', size: 'sm' })
-        this.modalService.open(content,
-        {
-            windowClass: 'modal-mini modal-primary', size: 'sm'
-        })
-        .result.then((result: any) =>
-        {
-            this.closeResult = `Closed with: ${result}`;
-        },
-        (reason: any) =>
-        {
-            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`
-        })
-    }
+    openModal(modalType: string): void {
+        if(!modalType) return;
 
-    private getDismissReason(reason: any): string {
-        if (reason === ModalDismissReasons.ESC) {
-            return 'by pressing ESC';
-        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-            return 'by clicking on a backdrop';
-        } else {
-            return  `with: ${reason}`;
+        if(modalType === 'modalCancel'){
+            this.modalRef = this.modalMdbService.open(ComponenteModalCancel, { data: { routeReturn: "/empresa/listar" } })
+        }
+        else if(modalType === 'modalConfirm'){
+            this.modalRef = this.modalMdbService.open(ComponenteModalConfirm)
+            this.modalRef.onClose.subscribe((saveConfirm: any) => {
+                console.log(saveConfirm);
+                if(saveConfirm === true) this.salvarCadastro()
+            });
         }
     }
 
-    salvarCadastro() {
+    salvarCadastro(): any {
         if(!this.form.invalid) return;
 
         const formData = {...this.form.value};
@@ -90,7 +97,7 @@ export class ComponenteCriarEmpresa implements OnInit {
         }
 
         return this.empresaService.Salvar(empresaData).subscribe({
-            next: () => this.router.navigate(["company/list"]),
+            next: () => this.router.navigate(["/empresa/listar"]),
             error: (err: any) => console.log(err)
         })
     }

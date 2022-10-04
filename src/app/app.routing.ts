@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminComponent } from './layouts/admin/admin.component';
 import { AuthComponent } from './layouts/auth/auth.component';
+import { AuthorizeGuard } from './shared/guards/authorize.guard';
 
 const routes: Routes =[
     {
@@ -21,7 +22,8 @@ const routes: Routes =[
                 path: '',
                 loadChildren: () => import('./layouts/admin/admin.module').then(x => x.AdminModule)
             }
-        ]
+        ],
+        // canActivate: [AuthorizeGuard]
     },
     {
         path: 'auth',

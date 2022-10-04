@@ -34,7 +34,7 @@ export class ComponenteListarFuncionario implements OnInit {
         if(!id) return;
 
         return this._funcionarioService.Deletar(id).subscribe({
-            next: () => this._router.navigate(["funcionario/atualizar"]),
+            next: () => this._router.navigate(["/funcionario/atualizar"]),
             error: (err: any) => console.log(err)
         })
     }

@@ -9,8 +9,10 @@ import { ComponenteCriarFuncionario } from '../../pages/funcionario/criar-funcio
 import { ComponenteCriarUsuario } from '../../pages/usuario/criar-usuario/criar-usuario.component';
 import { ComponenteCriarASO } from '../../pages/aso/criar-aso/criar-aso.component';
 import { EmpresaResolve } from '../../pages/empresa/empresa-resolve';
+import { ComponenteListarASO } from '../../pages/aso/listar-aso/listar-aso.component';
 
 export const AdminRoutes: Routes = [
+    { path: '',                             redirectTo: 'empresa/listar' },
     { path: 'dashboard',                    component: DashboardComponent },
     { path: 'empresa/listar',               component: ComponenteListarEmpresa },
     { path: 'empresa/criar',                component: ComponenteCriarEmpresa },
@@ -20,4 +22,5 @@ export const AdminRoutes: Routes = [
     { path: 'funcionario/listar',           component: ComponenteListarFuncionario },
     { path: 'funcionario/criar',            component: ComponenteCriarFuncionario },
     { path: 'aso/criar',                    component: ComponenteCriarASO },
+    { path: 'aso/listar',                   component: ComponenteListarASO },
 ];

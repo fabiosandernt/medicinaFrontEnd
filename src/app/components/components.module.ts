@@ -13,8 +13,12 @@ import { TableListComponent } from './template/table-list/table-list.component';
 import { TypographyComponent } from './template/typography/typography.component';
 import { MapsComponent } from './template/maps/maps.component';
 import { NotificationsComponent } from './template/notifications/notifications.component';
-import { ComponenteModalCancel } from './modals/modal-cancel/modal-cancel.component';
+
 import { ComponenteModalConfirm } from './modals/modal-confirm/modal-confirm.component';
+import { ComponenteModalCancel } from './modals/modal-cancel/modal-cancel.component';
+
+export { ComponenteModalCancel };
+export { ComponenteModalConfirm };
 
 @NgModule({
     imports: [
