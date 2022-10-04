@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrModule } from "ngx-toastr";
+import { ComponentsModule } from "src/app/components/components.module";
 import { ComponenteLogin } from "../../pages/login/login.component";
 import { AuthRoutes } from "./auth.routing";
 
@@ -16,6 +17,7 @@ import { AuthRoutes } from "./auth.routing";
         ToastrModule.forRoot(),
         FormsModule,
         ReactiveFormsModule,
+        ComponentsModule
     ],
     declarations: [
         ComponenteLogin,

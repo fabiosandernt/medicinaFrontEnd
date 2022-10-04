@@ -16,6 +16,7 @@ import { NotificationsComponent } from './template/notifications/notifications.c
 
 import { ComponenteModalConfirm } from './modals/modal-confirm/modal-confirm.component';
 import { ComponenteModalCancel } from './modals/modal-cancel/modal-cancel.component';
+import { ComponenteAlert } from './alert/alert.component';
 
 export { ComponenteModalCancel };
 export { ComponenteModalConfirm };
@@ -38,7 +39,8 @@ export { ComponenteModalConfirm };
         NotificationsComponent,
         IconsComponent,
         ComponenteModalCancel,
-        ComponenteModalConfirm
+        ComponenteModalConfirm,
+        ComponenteAlert
     ],
     exports: [
         FooterComponent,
@@ -52,7 +54,8 @@ export { ComponenteModalConfirm };
         NotificationsComponent,
         IconsComponent,
         ComponenteModalCancel,
-        ComponenteModalConfirm
+        ComponenteModalConfirm,
+        ComponenteAlert
     ]
 })
 export class ComponentsModule { }

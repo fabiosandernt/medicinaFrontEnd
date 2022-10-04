@@ -5,28 +5,48 @@
                 <div class="header header-primary text-center">
                     <div class="logo-container"></div>
                 </div>
+
                 <div class="content">
                     <form [formGroup]="form">
                         <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                                <span class="input-group-text">
+                                    <i class="now-ui-icons users_circle-08"></i>
+                                </span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Email" (focus)="focus=true" (blur)="focus=false" >
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Email"
+                                (focus)="focus=true"
+                                (blur)="focus=false"
+                                formControlName="email"
+                            >
                         </div>
 
                         <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus1===true}">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="now-ui-icons objects_key-25"></i></span>
+                                <span class="input-group-text">
+                                    <i class="now-ui-icons objects_key-25"></i>
+                                </span>
                             </div>
-                            <input type="password" placeholder="Senha" class="form-control" (focus)="focus1=true" (blur)="focus1=false"/>
+                            <input
+                                type="password"
+                                placeholder="Senha"
+                                class="form-control"
+                                (focus)="focus1=true"
+                                (blur)="focus1=false"
+                                formControlName="senha"
+                            >
                         </div>
                     </form>
                 </div>
+
                 <div class="footer text-center">
-                    <a
+                    <button
                         (click)="login()"
                         class="btn btn-primary btn-round btn-lg btn-block"
-                    > Login </a>
+                    > Login </button>
                 </div>
                 <!--<div class="pull-left">
                     <h6>
@@ -38,3 +58,10 @@
         </div>
     </div>
 </div>
+
+<app-alert
+    tipo="danger"
+    titulo="Ocorreu um erro ao fazer login!"
+    mensagem="Verifique as credenciais e tente novamente."
+    change="onAlert"
+></app-alert>

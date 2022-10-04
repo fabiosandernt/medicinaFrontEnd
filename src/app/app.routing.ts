@@ -10,11 +10,6 @@ import { AuthorizeGuard } from './shared/guards/authorize.guard';
 const routes: Routes =[
     {
         path: '',
-        redirectTo: 'empresa/listar',
-        pathMatch: 'full',
-    },
-    {
-        path: '',
         component: AdminComponent,
         children:
         [
