@@ -4,10 +4,11 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpError } from '../pipes/httpError.pipe';
 
+import { environment } from 'src/environments/environment.prod';
+
 @Injectable({
     providedIn: 'root'
 })
-
 export class UsuarioService {
     constructor(private _httpClient: HttpClient, private _httpError: HttpError) {}
 
@@ -45,4 +46,10 @@ export class UsuarioService {
             ).pipe(catchError(this._httpError.handleError));
         }
     }
+
+    // LoginMethod(data: any): Observable<any> {
+    //     return this._httpClient.post<any>(
+    //         `${environment.apiUrl}/Authentication`, data
+    //     ).pipe(catchError(this._httpError.handleError));
+    // }
 }
