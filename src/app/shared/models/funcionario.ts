@@ -1,14 +1,11 @@
 export declare interface Funcionario {
     id?: string;
-    nome: string;
+    name: string;
     cpf: string;
+    cnpj: string;
     dataNascimento: Date;
     funcao: number;
-    cnpj: string;
-    razaoSocial: string;
     setor: string;
-    esocial: string;
+    matriculaEsocial: string;
     pis: string;
-    tipoExame: number;
-    dataExame: Date;
 }
