@@ -34,10 +34,17 @@ export class ComponenteCriarUsuario implements OnInit {
 
     initForm(): void {
         this.form = this._formBuilder.group({
-            nome: [this.usuario?.name, [Validators.required, Validators.maxLength(30)]],
+            nome: [this.usuario?.name, [
+                Validators.required,
+                Validators.maxLength(30)
+            ]],
             tipo: [this.usuario?.tipoUsuario, [Validators.required]],
-            senha: [this.usuario?.password.valor, [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
-            email: [this.usuario?.email.valor, [
+            senha: [this.usuario?.password, [
+                Validators.required,
+                Validators.minLength(5),
+                Validators.maxLength(15)
+            ]],
+            email: [this.usuario?.email, [
                 Validators.required,
                 Validators.pattern("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+).(\.[a-z]{2,3})$"),
                 Validators.maxLength(50)
@@ -54,27 +61,22 @@ export class ComponenteCriarUsuario implements OnInit {
         else if(modalType === 'modalConfirm'){
             this.modalRef = this.modalMdbService.open(ComponenteModalConfirm)
             this.modalRef.onClose.subscribe((saveConfirm: any) => {
-                console.log(saveConfirm);
-                if(saveConfirm === true) this.salvarCadastro()
+                if(saveConfirm) this.salvarCadastro()
             });
         }
     }
 
     salvarCadastro() {
-        if(!this.form.invalid) return;
+        //if(!this.form.invalid) return;
 
         const formData = {...this.form.value};
 
         const usuarioData: Usuario = {
             id: this.usuario?.id,
             name: formData.nome,
-            tipoUsuario: formData.tipo,
-            password: {
-                valor: formData.senha
-            },
-            email: {
-                valor: formData.email
-            },
+            tipoUsuario: Number(formData.tipo),
+            password: { valor: formData.senha },
+            email: { valor: formData.email },
         }
 
         return this._usuarioService.Salvar(usuarioData).subscribe({

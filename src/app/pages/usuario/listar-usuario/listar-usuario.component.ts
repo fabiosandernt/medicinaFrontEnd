@@ -39,15 +39,29 @@ export class ComponenteListarUsuario implements OnInit {
         })
     }
 
+    enumFuncao(value: any) {
+        enum Funcao {
+            "Administrador" = 1,
+            "Clínica",
+            "Cliente"
+        }
+
+        return Funcao[value]
+    }
+
     listar(){
         this._usuarioService.Listar().subscribe((data: any) => {
-            this.usuarios = data;
+            this.usuarios = data.usuarios;
 
-            this.totalPagina = data.totalPagina;
+            this.usuarios.forEach((usuario: any) => {
+                usuario.tipoUsuario = this.enumFuncao(usuario.tipoUsuario)
+            });
+
             this.tamanhoColecao = this.usuarios.length;
+            this.totalPagina = data.tamanhoColecao;
 
-            this.usuarios = data.map(
-                (usuario: any, i: any) => ({ id: i + 1, ...usuario })
+            this.usuarios.map(
+                (usuario: any) => usuario
             ).slice(
                 (this.pagina - 1) * this.tamanhoPagina,
                 (this.pagina - 1) * this.tamanhoPagina + this.tamanhoPagina

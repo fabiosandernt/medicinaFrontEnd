@@ -24,7 +24,7 @@
                                 </th>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr *ngFor="let usuario of usuarios">
                                     <td class="d-flex" style="justify-content: space-evenly">
                                         <button class="btn btn-primary btn-icon btn-round" type="button">
                                             <i class="now-ui-icons tim-icons icon-pencil"></i>
@@ -35,13 +35,13 @@
                                         </button>
                                     </td>
                                     <td>
-                                        Teste
+                                        {{ usuario.name }}
                                     </td>
                                     <td>
-                                        teste@gmail.com
+                                        {{ usuario.email.valor }}
                                     </td>
                                     <td class="text-right">
-                                        Adminstrator
+                                        {{ usuario.tipoUsuario }}
                                     </td>
                                 </tr>
                             </tbody>
