@@ -41,14 +41,12 @@ export class ComponenteListarFuncionario implements OnInit {
 
     listar(){
         this._funcionarioService.Listar().subscribe((data: any) => {
-            this.funcionarios = data;
+            this.funcionarios = data.funcionarios;
 
-            this.totalPagina = data.totalPagina;
+            this.totalPagina = this.tamanhoColecao;
             this.tamanhoColecao = this.funcionarios.length;
 
-            this.funcionarios = data.map(
-                (funcionario: any, i: any) => ({ id: i + 1, ...funcionario })
-            ).slice(
+            this.funcionarios = data.map((funcionario: any) => funcionario).slice(
                 (this.pagina - 1) * this.tamanhoPagina,
                 (this.pagina - 1) * this.tamanhoPagina + this.tamanhoPagina
             );

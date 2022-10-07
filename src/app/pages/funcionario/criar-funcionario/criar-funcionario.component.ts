@@ -42,7 +42,7 @@ export class ComponenteCriarFuncionario implements OnInit {
 
     initForm(): void {
         this.form = this._formBuilder.group({
-            nome: [this.funcionario?.nome, [
+            nome: [this.funcionario?.name, [
                 Validators.required,
                 Validators.maxLength(50)
             ]],
@@ -52,27 +52,26 @@ export class ComponenteCriarFuncionario implements OnInit {
                 Validators.maxLength(11),
                 Validators.pattern("^[0-9]*$")
             ]],
-            dataNascimento: [this.funcionario?.dataNascimento, [Validators.required]],
-            funcao: [this.funcionario?.funcao],
             cnpj: [this.funcionario?.cnpj, [
                 Validators.required,
                 Validators.minLength(14),
                 Validators.maxLength(14),
                 Validators.pattern("^[0-9]*$")
             ]],
-            razaoSocial: [this.funcionario?.razaoSocial],
-            setor: [this.funcionario?.setor, [Validators.maxLength(30)]],
-            esocial: [this.funcionario?.esocial, [
+            dataNascimento: [this.funcionario?.dataNascimento, [Validators.required]],
+            funcao: [this.funcionario?.funcao, [Validators.required, Validators.maxLength(20)]],
+            setor: [this.funcionario?.setor, [Validators.required, Validators.maxLength(30)]],
+            esocial: [this.funcionario?.matriculaEsocial, [
+                Validators.required,
                 Validators.maxLength(20),
                 Validators.pattern("^[0-9]*$")
             ]],
             pis: [this.funcionario?.pis, [
+                Validators.required,
                 Validators.minLength(11),
                 Validators.maxLength(11),
                 Validators.pattern("^[0-9]*$")
             ]],
-            exame: [this.funcionario?.tipoExame, [Validators.required]],
-            dataExame: [this.funcionario?.dataExame, [Validators.required]],
         });
     }
 
@@ -85,7 +84,6 @@ export class ComponenteCriarFuncionario implements OnInit {
         else if(modalType === 'modalConfirm'){
             this.modalRef = this.modalMdbService.open(ComponenteModalConfirm)
             this.modalRef.onClose.subscribe((saveConfirm: any) => {
-                console.log(saveConfirm);
                 if(saveConfirm === true) this.salvarCadastro()
             });
         }
@@ -97,23 +95,20 @@ export class ComponenteCriarFuncionario implements OnInit {
     }
 
     salvarCadastro() {
-        if(!this.form.invalid) return;
+        // if(!this.form.invalid) return;
 
         const formData = {...this.form.value};
 
         const funcionarioData: Funcionario = {
             id: this.funcionario?.id,
-            nome: formData.nome,
+            name: formData.nome,
             cpf: formData.cpf,
             dataNascimento: formData.dataNascimento,
             funcao: formData.funcao,
             cnpj: formData.cnpj,
-            razaoSocial: formData.razaoSocial,
             setor: formData.setor,
-            esocial: formData.esocial,
+            matriculaEsocial: formData.esocial,
             pis: formData.pis,
-            tipoExame: formData.exame,
-            dataExame: formData.dataExame
         }
 
         return this.funcionarioService.Salvar(funcionarioData).subscribe({

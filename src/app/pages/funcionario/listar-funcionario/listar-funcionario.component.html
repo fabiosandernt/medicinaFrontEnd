@@ -11,26 +11,26 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
-                            <thead class=" text-primary">
+                            <thead class="text-primary">
                                 <th></th>
-                                <th>
-                                    CNPJ
-                                </th>
-                                <th>
-                                    Razão Social
-                                </th>
                                 <th>
                                     Nome
                                 </th>
                                 <th>
-                                    Função
+                                    CPF
+                                </th>
+                                <th>
+                                    Setor
+                                </th>
+                                <th>
+                                    Data de Nascimento
                                 </th>
                                 <th class="text-right">
-                                    Exame
+                                    Função
                                 </th>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr *ngFor="let funcionario of funcionarios">
                                     <td class="d-flex" style="justify-content: space-evenly">
                                         <button class="btn btn-primary btn-icon btn-round" type="button">
                                             <i class="now-ui-icons tim-icons icon-pencil"></i>
@@ -41,19 +41,19 @@
                                         </button>
                                     </td>
                                     <td>
-                                        12345678000110
+                                        {{ funcionario.name }}
                                     </td>
                                     <td>
-                                        Teste Indústrias Ltda
+                                        {{ funcionario.cpf }}
                                     </td>
                                     <td>
-                                        Teste
+                                        {{ funcionario.setor }}
                                     </td>
                                     <td>
-                                        Supervisor
+                                        {{ funcionario.dataNascimento }}
                                     </td>
                                     <td class="text-right">
-                                        Admissional
+                                        {{ funcionario.funcao }}
                                     </td>
                                 </tr>
                             </tbody>
