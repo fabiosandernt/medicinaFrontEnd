@@ -144,7 +144,7 @@ export class ComponenteCriarASO implements OnInit {
             tipoExame: formData.exame,
             dataExame: formData.dataExame,
             cpf: formData.cpf,
-            anexoImagem: this.imagemSrc,
+            imagem: this.imagemSrc,
         }
 
         console.log(asoData)

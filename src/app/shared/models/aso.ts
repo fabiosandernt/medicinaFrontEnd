@@ -2,6 +2,6 @@ export declare interface Aso {
     id?: string | null;
     tipoExame: number;
     dataExame: Date;
-    anexoImagem: string;
+    imagem: string;
     cpf: string;
 }

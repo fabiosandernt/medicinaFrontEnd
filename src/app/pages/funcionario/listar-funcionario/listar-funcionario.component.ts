@@ -46,7 +46,7 @@ export class ComponenteListarFuncionario implements OnInit {
             this.totalPagina = this.tamanhoColecao;
             this.tamanhoColecao = this.funcionarios.length;
 
-            this.funcionarios = data.map((funcionario: any) => funcionario).slice(
+            this.funcionarios.map((funcionario: any) => funcionario).slice(
                 (this.pagina - 1) * this.tamanhoPagina,
                 (this.pagina - 1) * this.tamanhoPagina + this.tamanhoPagina
             );
