@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ComponenteModalCancel, ComponenteModalConfirm } from '../../../components/components.module';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { NumberFormatStyle } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-criar-aso',
@@ -33,7 +34,8 @@ export class ComponenteCriarASO implements OnInit {
         private _formBuilder: FormBuilder,
         private _asoService: ASOService,
         private _router: Router,
-        private _modalMdbService: MdbModalService
+        private _modalMdbService: MdbModalService,
+        private toastr: ToastrService
     ) {}
 
     ngOnInit(): void {
@@ -107,6 +109,31 @@ export class ComponenteCriarASO implements OnInit {
         }
     }
 
+    showAlert(type: string) {
+        const from = 'top'
+        const align = 'right'
+
+        if(type == 'error') {
+            this.toastr.error('<span class="now-ui-icons tim-icons icon-alert-circle-exc"></span> Não foi possível fazer o cadastro </b> - Por favor tente novamente mais tarde!', '', {
+                timeOut: 8000,
+                enableHtml: true,
+                closeButton: true,
+                toastClass: "alert alert-danger alert-with-icon",
+                positionClass: 'toast-' + from + '-' +  align
+            });
+        }
+
+        if(type == 'success') {
+            this.toastr.success('<span class="now-ui-icons ui-1_check"></span> Cadastro realizado com sucesso </b> - Veja as informações cadastradas abaixo!', '', {
+                timeOut: 8000,
+                enableHtml: true,
+                closeButton: true,
+                toastClass: "alert alert-success alert-with-icon",
+                positionClass: 'toast-' + from + '-' +  align
+            });
+        }
+    }
+
     salvarCadastro() {
         // if(!this.form.invalid) return;
 
@@ -123,8 +150,14 @@ export class ComponenteCriarASO implements OnInit {
         console.log(asoData)
 
         return this._asoService.Salvar(asoData).subscribe({
-            next: () => this._router.navigate(["/aso/listar"]),
-            error: (err: any) => console.log(err)
+            next: () => {
+                this.showAlert('success')
+                this._router.navigate(["/aso/listar"])
+            },
+            error: (err: any) => {
+                console.log(err)
+                this.showAlert('error')
+            }
         })
     }
 }

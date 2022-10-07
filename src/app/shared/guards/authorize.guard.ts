@@ -47,6 +47,7 @@ import { LocalStorageService } from '../services/localStorage.service';
             this._router.navigate(['/auth/login'], { queryParams: { returnUrl: state.url } });
             return false
         }
+
         return true;
 
         // this.authService.getTokenAcesso();

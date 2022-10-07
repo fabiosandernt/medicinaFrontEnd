@@ -35,11 +35,11 @@ export class ComponenteLogin implements OnInit {
         private jwtService: JWTService,
         private toastr: ToastrService,
         private userService: UsuarioService
-    ) {
-        if(this.jwtService.hasToken) this.jwtService.removeToken
-    }
+    ) {}
 
     ngOnInit() {
+        if(this.jwtService.hasToken) this.jwtService.removeToken
+
         this.form = this._formbuilder.group({
             email: [''],
             senha: ['']
@@ -48,40 +48,45 @@ export class ComponenteLogin implements OnInit {
         var body = document.getElementsByTagName('body')[0];
         body.classList.add('login-page');
 
-        var navbar = document.getElementsByTagName('nav')[0];
-        navbar.classList.add('navbar-transparent');
+        // var navbar = document.getElementsByTagName('nav')[0];
+        // navbar.classList.add('navbar-transparent');
     }
 
     ngOnDestroy(){
         var body = document.getElementsByTagName('body')[0];
         body.classList.remove('login-page');
 
-        var navbar = document.getElementsByTagName('nav')[0];
-        navbar.classList.remove('navbar-transparent');
+        // var navbar = document.getElementsByTagName('nav')[0];
+        // navbar.classList.remove('navbar-transparent');
     }
 
     reloadPage(): void {
         window.location.reload();
     }
 
-    showAlert() {
+    showAlert(type: string) {
         const from = 'top'
         const align = 'right'
 
-        this.toastr.error('<span class="now-ui-icons tim-icons icon-alert-circle-exc"></span> Não foi possível fazer login </b> - Email ou senha incorretos!', '', {
-            timeOut: 8000,
-            enableHtml: true,
-            closeButton: true,
-            toastClass: "alert alert-danger alert-with-icon",
-            positionClass: 'toast-' + from + '-' +  align
-        });
-        // this.toastr.warning('<span class="now-ui-icons tim-icons icon-alert-circle-exc"></span> Ocorreu um erro inesperado </b> - Por favor, tente novamente mais tarde!', '', {
-        //     timeOut: 8000,
-        //     closeButton: true,
-        //     enableHtml: true,
-        //     toastClass: "alert alert-warning alert-with-icon",
-        //     positionClass: 'toast-' + from + '-' +  align
-        // });
+        if(type == 'error') {
+            this.toastr.error('<span class="now-ui-icons tim-icons icon-alert-circle-exc"></span> Não foi possível fazer login </b> - Email ou senha incorretos!', '', {
+                timeOut: 8000,
+                enableHtml: true,
+                closeButton: true,
+                toastClass: "alert alert-danger alert-with-icon",
+                positionClass: 'toast-' + from + '-' +  align
+            });
+        }
+
+        if(type == 'success') {
+            this.toastr.success('<span class="now-ui-icons ui-1_check"></span> Login bem sucedido </b> - Bem-vindo(a)!', '', {
+                timeOut: 8000,
+                enableHtml: true,
+                closeButton: true,
+                toastClass: "alert alert-success alert-with-icon",
+                positionClass: 'toast-' + from + '-' +  align
+            });
+        }
     }
 
     login() {
@@ -113,13 +118,13 @@ export class ComponenteLogin implements OnInit {
         this.loginService.Login(loginData).subscribe({
             next: (result) => {
                 this.authService.saveToken(result);
-
+                this.showAlert('success')
                 this._router.navigate(['']);
             },
             error: (err) => {
                 console.log(err)
-                this.showAlert()
-            }
+                this.showAlert('error')
+            },
         });
 
         // return this.loginService.Login(loginData).subscribe({

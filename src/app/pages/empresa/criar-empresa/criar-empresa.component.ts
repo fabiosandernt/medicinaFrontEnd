@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { ToastrService } from 'ngx-toastr';
 
 import { ComponenteModalCancel, ComponenteModalConfirm } from '../../../components/components.module';
 
@@ -26,7 +27,8 @@ export class ComponenteCriarEmpresa implements OnInit {
         private router: Router,
         private activatedRouter: ActivatedRoute,
         private empresaService: EmpresaService,
-        private modalMdbService: MdbModalService
+        private modalMdbService: MdbModalService,
+        private toastr: ToastrService
     ) {}
 
     ngOnInit(): void {
@@ -79,6 +81,31 @@ export class ComponenteCriarEmpresa implements OnInit {
         }
     }
 
+    showAlert(type: string) {
+        const from = 'top'
+        const align = 'right'
+
+        if(type == 'error') {
+            this.toastr.error('<span class="now-ui-icons tim-icons icon-alert-circle-exc"></span> Não foi possível fazer o cadastro </b> - Por favor tente novamente mais tarde!', '', {
+                timeOut: 8000,
+                enableHtml: true,
+                closeButton: true,
+                toastClass: "alert alert-danger alert-with-icon",
+                positionClass: 'toast-' + from + '-' +  align
+            });
+        }
+
+        if(type == 'success') {
+            this.toastr.success('<span class="now-ui-icons ui-1_check"></span> Cadastro realizado com sucesso </b> - Veja as informações cadastradas abaixo!', '', {
+                timeOut: 8000,
+                enableHtml: true,
+                closeButton: true,
+                toastClass: "alert alert-success alert-with-icon",
+                positionClass: 'toast-' + from + '-' +  align
+            });
+        }
+    }
+
     salvarCadastro(): any {
         // if(!this.form.invalid) return;
 
@@ -98,8 +125,14 @@ export class ComponenteCriarEmpresa implements OnInit {
         }
 
         return this.empresaService.Salvar(empresaData).subscribe({
-            next: () => this.router.navigate(["/empresa/listar"]),
-            error: (err: any) => console.log(err)
+            next: () => {
+                this.showAlert('success')
+                this.router.navigate(["/empresa/listar"])
+            },
+            error: (err: any) => {
+                console.log(err)
+                this.showAlert('error')
+            }
         })
     }
 }

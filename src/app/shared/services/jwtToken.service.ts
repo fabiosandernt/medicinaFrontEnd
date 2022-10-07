@@ -61,6 +61,8 @@ export class JWTService {
     }
 
     setToken(token: string) {
+        if(this.getToken()) this.removeToken()
+
         window.localStorage.setItem(KEY, token);
     }
 
