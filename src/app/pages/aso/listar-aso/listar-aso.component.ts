@@ -38,6 +38,16 @@ export class ComponenteListarASO implements OnInit {
         })
     }
 
+    enumFuncao(value: number) {
+        enum Funcao {
+            "Admissional" = 1,
+            "Demissional",
+            "Periódico"
+        }
+
+        return Funcao[value]
+    }
+
     listar(){
         this._asoService.Listar().subscribe((data: any) => {
             this.asos = data.asos;
@@ -45,7 +55,11 @@ export class ComponenteListarASO implements OnInit {
             this.tamanhoColecao = this.asos.length;
             this.totalPagina = this.tamanhoColecao;
 
-            this.asos = data.asos.map((aso: any) => aso).slice(
+            this.asos.forEach((aso: any) => {
+                aso.tipoExame = this.enumFuncao(Number(aso.tipoExame))
+            });
+
+            this.asos.map((aso: any) => aso).slice(
                 (this.pagina - 1) * this.tamanhoPagina,
                 (this.pagina - 1) * this.tamanhoPagina + this.tamanhoPagina
             );
