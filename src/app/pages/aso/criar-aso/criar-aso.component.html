@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body">
                     <form [formGroup]="form">
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-3 pr-md-1">
                                 <div class="form-group"
                                 [ngClass]="
@@ -126,6 +126,20 @@
                                     <label for="email"> PIS </label>
                                     <input type="text" class="form-control form-control-success" placeholder="somente números" maxlength="11" minlength="11" formControlName="pis">
                                 </div>
+                            </div> -->
+                        <div class="row">
+                            <div class="col-md-3 pr-md-1">
+                                <div class="form-group"
+                                    [ngClass]="
+                                    form.controls.cpf?.errors?.required ||
+                                    form.controls.cpf?.errors?.minlength ||
+                                    form.controls.cpf?.errors?.pattern ||
+                                    form.controls.cpf?.errors?.maxlength &&
+                                    form.dirty ? 'has-danger' : 'has-success'"
+                                >
+                                    <label> CPF </label>
+                                    <input type="text" class="form-control" formControlName="cpf" placeholder="somente números" maxlength="11" minlength="11">
+                                </div>
                             </div>
 
                             <div class="col-md-3 pr-md-1">
@@ -144,14 +158,14 @@
                             </div>
 
                             <div class="col-md-3 pr-md-1" *ngIf="tipoExame == 1 || tipoExame == 3">
-                                <div class="datepicker-container">
+                                <!-- <div class="datepicker-container"> -->
                                     <div class="form-group"
                                         [ngClass]="
                                         form.controls.dataExame?.errors?.required &&
                                         form.dirty ? 'has-danger' : 'has-success'"
                                     >
                                         <label> Data Admissão </label>
-                                        <input
+                                        <!-- <input
                                             class="form-control datetimepicker"
                                             placeholder=""
                                             name="dataExame"
@@ -161,9 +175,10 @@
                                             (click)="d.toggle()"
                                             data-color="orange"
                                             formControlName="dataExame"
-                                        >
+                                        > -->
+                                        <input type="date" formControlName="dataExame" placeholder="" class="form-control">
                                     </div>
-                                </div>
+                                <!-- </div> -->
                             </div>
                             <div class="col-md-3 pr-md-1" *ngIf="tipoExame == 2">
                                 <div class="datepicker-container">
@@ -173,17 +188,7 @@
                                         form.dirty ? 'has-danger' : 'has-success'"
                                     >
                                         <label> Data Demissão</label>
-                                        <input
-                                            class="form-control datetimepicker"
-                                            placeholder=""
-                                            name="dataExame"
-                                            [(ngModel)]="modelDataExame"
-                                            ngbDatepicker
-                                            #d="ngbDatepicker"
-                                            (click)="d.toggle()"
-                                            data-color="orange"
-                                            formControlName="dataExame"
-                                        >
+                                        <input type="date" formControlName="dataExame" placeholder="" class="form-control">
                                     </div>
                                 </div>
                             </div>

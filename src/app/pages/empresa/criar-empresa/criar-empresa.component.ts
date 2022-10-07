@@ -54,7 +54,7 @@ export class ComponenteCriarEmpresa implements OnInit {
                 Validators.maxLength(9),
                 Validators.pattern("^[0-9]*$")
             ]],
-            risco: [this.empresa?.risco],
+            risco: [this.empresa?.risco || 0],
             endereco: [this.empresa?.endereco, [Validators.maxLength(50)]],
             email: [this.empresa?.email,
             [
@@ -74,14 +74,13 @@ export class ComponenteCriarEmpresa implements OnInit {
         else if(modalType === 'modalConfirm'){
             this.modalRef = this.modalMdbService.open(ComponenteModalConfirm)
             this.modalRef.onClose.subscribe((saveConfirm: any) => {
-                console.log(saveConfirm);
-                if(saveConfirm === true) this.salvarCadastro()
+                if(saveConfirm) this.salvarCadastro()
             });
         }
     }
 
     salvarCadastro(): any {
-        if(!this.form.invalid) return;
+        // if(!this.form.invalid) return;
 
         const formData = {...this.form.value};
 

@@ -14,12 +14,6 @@
                             <thead class=" text-primary">
                                 <th></th>
                                 <th>
-                                    Empresa
-                                </th>
-                                <th>
-                                    Funcionário
-                                </th>
-                                <th>
                                     Exame
                                 </th>
                                 <th>
@@ -41,16 +35,10 @@
                                         </button>
                                     </td>
                                     <td>
-                                        {{ aso.razaoSocial || 'Teste Indústrias Ltda' }}
+                                        {{ aso.tipoExame }}
                                     </td>
                                     <td>
-                                        {{ aso.nome || 'Fabricio' }}
-                                    </td>
-                                    <td>
-                                        {{ aso.tipoExame || 'Admissional' }}
-                                    </td>
-                                    <td>
-                                        {{ aso.dataExame || '01/01/2022' }}
+                                        {{ aso.dataExame }}
                                     </td>
                                     <td class="text-right">
                                         <span class="badge badge-success"> Realizado </span>

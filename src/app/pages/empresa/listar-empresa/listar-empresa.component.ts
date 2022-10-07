@@ -46,14 +46,12 @@ export class ComponenteListarEmpresa implements OnInit {
 
     listar(){
         this._empresaService.Listar().subscribe((data: any) => {
-            this.empresas = data;
+            this.empresas = data.empresas;
 
-            this.totalPagina = data.totalPagina;
             this.tamanhoColecao = this.empresas.length;
+            this.totalPagina = this.tamanhoColecao;
 
-            this.empresas = data.map(
-                (empresa: any, i: any) => ({ id: i + 1, ...empresa })
-            ).slice(
+            this.empresas.map((empresa: any) => empresa).slice(
                 (this.pagina - 1) * this.tamanhoPagina,
                 (this.pagina - 1) * this.tamanhoPagina + this.tamanhoPagina
             );

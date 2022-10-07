@@ -25,11 +25,11 @@ export class ComponenteListarASO implements OnInit {
         this.listar()
     }
 
-    atualizarEmpresa(id: number) {
+    atualizarAso(id: number) {
         this._router.navigate(['/aso/atualizar', id]);
     }
 
-    deletarEmpresa(id: number) {
+    deletarAso(id: number) {
         if(!id) return;
 
         return this._asoService.Deletar(id).subscribe({
@@ -40,14 +40,12 @@ export class ComponenteListarASO implements OnInit {
 
     listar(){
         this._asoService.Listar().subscribe((data: any) => {
-            this.asos = data;
+            this.asos = data.asos;
 
-            this.totalPagina = data.totalPagina;
             this.tamanhoColecao = this.asos.length;
+            this.totalPagina = this.tamanhoColecao;
 
-            this.asos = data.map(
-                (aso: any, i: any) => ({ id: i + 1, ...aso })
-            ).slice(
+            this.asos = data.asos.map((aso: any) => aso).slice(
                 (this.pagina - 1) * this.tamanhoPagina,
                 (this.pagina - 1) * this.tamanhoPagina + this.tamanhoPagina
             );

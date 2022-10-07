@@ -42,44 +42,23 @@ export class ComponenteCriarASO implements OnInit {
 
     initForm(): void {
         this.form = this._formBuilder.group({
-            nome: [this.aso?.nome, [Validators.required, Validators.maxLength(50)]],
+            exame: [this.aso?.tipoExame, [Validators.required]],
+            dataExame: [this.aso?.dataExame, [Validators.required]],
+            anexoImagem: ({
+                imagem: [''],
+                imagemSource: ['']
+            }),
             cpf: [this.aso?.cpf, [
                 Validators.required,
                 Validators.minLength(11),
                 Validators.maxLength(11),
                 Validators.pattern("^[0-9]*$")
             ]],
-            dataNascimento: [this.aso?.dataNascimento, [Validators.required]],
-            funcao: [this.aso?.funcao],
-            cnpj: [this.aso?.cnpj, [
-                Validators.required,
-                Validators.minLength(14),
-                Validators.maxLength(14),
-                Validators.pattern("^[0-9]*$")
-            ]],
-            razaoSocial: [this.aso?.razaoSocial],
-            setor: [this.aso?.setor, [Validators.maxLength(30)]],
-            esocial: [this.aso?.esocial, [
-                Validators.maxLength(20),
-                Validators.pattern("^[0-9]*$")
-            ]],
-            pis: [this.aso?.pis, [
-                Validators.minLength(11),
-                Validators.maxLength(11),
-                Validators.pattern("^[0-9]*$")
-            ]],
-            exame: [this.aso?.tipoExame, [Validators.required]],
-            dataExame: [this.aso?.dataExame, [Validators.required]],
-            anexoImagem: ({
-                imagem: [''],
-                imagemSource: ['']
-            })
         });
     }
 
     public alterarTipo(e: any): void {
         this.tipoExame = e.target.value;
-        console.log(this.tipoExame);
     }
 
     onImageChange(event: any) {
@@ -120,32 +99,28 @@ export class ComponenteCriarASO implements OnInit {
         else if(modalType === 'modalConfirm'){
             this.modalRef = this._modalMdbService.open(ComponenteModalConfirm)
             this.modalRef.onClose.subscribe((saveConfirm: any) => {
-                console.log(saveConfirm);
-                if(saveConfirm === true) this.salvarCadastro()
+                if(saveConfirm)
+                {
+                    this.salvarCadastro()
+                }
             });
         }
     }
 
     salvarCadastro() {
-        if(!this.form.invalid) return;
+        // if(!this.form.invalid) return;
 
         const formData = {...this.form.value};
 
         const asoData: Aso = {
             id: this.aso?.id,
-            nome: formData.nome,
-            cpf: formData.cpf,
-            dataNascimento: formData.dataNascimento,
-            funcao: formData.funcao,
-            cnpj: formData.cnpj,
-            razaoSocial: formData.razaoSocial,
-            setor: formData.setor,
-            esocial: formData.esocial,
-            pis: formData.pis,
             tipoExame: formData.exame,
             dataExame: formData.dataExame,
-            anexoImagem: formData.anexoImagem.imagemSource,
+            cpf: formData.cpf,
+            anexoImagem: this.imagemSrc,
         }
+
+        console.log(asoData)
 
         return this._asoService.Salvar(asoData).subscribe({
             next: () => this._router.navigate(["/aso/listar"]),

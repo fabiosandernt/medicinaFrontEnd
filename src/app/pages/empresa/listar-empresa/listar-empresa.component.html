@@ -33,7 +33,7 @@
                                 </th>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr *ngFor="let empresa of empresas">
                                     <td class="d-flex" style="justify-content: space-evenly">
                                         <button class="btn btn-primary btn-icon btn-round" type="button">
                                             <i class="now-ui-icons tim-icons icon-pencil"></i>
@@ -103,22 +103,22 @@
                                         </a>
                                     </td>
                                     <td>
-                                        12345678000110
+                                        {{ empresa.cnpj }}
                                     </td>
                                     <td>
-                                        Teste Indústrias Ltda
+                                        {{ empresa.razaoSocial }}
                                     </td>
                                     <td>
-                                        123456789
+                                        {{ empresa.celular }}
                                     </td>
                                     <td>
-                                        12345678
+                                        {{ empresa.telefone }}
                                     </td>
                                     <td>
-                                        1
+                                        {{ empresa.risco }}
                                     </td>
                                     <td class="text-right">
-                                        teste@gmail.com
+                                        {{ empresa.email.valor }}
                                     </td>
                                 </tr>
                             </tbody>
