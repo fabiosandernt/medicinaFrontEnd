@@ -33,6 +33,21 @@
                                         <button class="btn btn-primary btn-icon btn-round" type="button">
                                             <i class="now-ui-icons tim-icons icon-trash-simple"></i>
                                         </button>
+
+                                        <ng-template #popContent let-greeting="greeting">
+                                            <img [src]="aso.imagem" alt="image" class="rounded img-raised">
+                                        </ng-template>
+
+                                        <button
+                                            type="button"
+                                            class="btn btn-primary btn-icon btn-round"
+                                            placement="right"
+                                            [ngbPopover]="popContent"
+                                            popoverTitle="Pré-visualização"
+                                            popoverClass="popover-primary"
+                                        >
+                                            <i class="now-ui-icons design_image"></i>
+                                        </button>
                                     </td>
                                     <td>
                                         {{ aso.tipoExame }}

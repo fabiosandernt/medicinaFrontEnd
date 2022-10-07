@@ -48,6 +48,20 @@ export class ComponenteListarASO implements OnInit {
         return Funcao[value]
     }
 
+    previewImagem() {
+        const reader = new FileReader();
+        var imagemSrc = ""
+
+        reader.readAsDataURL(this.asos.imagem);
+
+        reader.onload = () => imagemSrc = reader.result as string;
+
+        console.log(imagemSrc)
+        const component = `<img src="${imagemSrc}" alt="" class="rounded img-raised">`
+
+        return component
+    }
+
     listar(){
         this._asoService.Listar().subscribe((data: any) => {
             this.asos = data.asos;
