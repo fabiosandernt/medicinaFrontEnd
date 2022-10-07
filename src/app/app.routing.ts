@@ -7,7 +7,7 @@ import { AdminComponent } from './layouts/admin/admin.component';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { AuthorizeGuard } from './shared/guards/authorize.guard';
 
-const routes: Routes =[
+const routes: Routes = [
     {
         path: '',
         component: AdminComponent,
@@ -18,7 +18,7 @@ const routes: Routes =[
                 loadChildren: () => import('./layouts/admin/admin.module').then(x => x.AdminModule)
             }
         ],
-        // canActivate: [AuthorizeGuard]
+        canActivate: [AuthorizeGuard]
     },
     {
         path: 'auth',
