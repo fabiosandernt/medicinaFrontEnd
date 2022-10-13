@@ -7,6 +7,7 @@ import { UsuarioService } from '../../../shared/services/usuario.service';
 
 import { ComponenteModalCancel, ComponenteModalConfirm } from '../../../components/components.module';
 import { ToastrService } from 'ngx-toastr';
+import { ToastrNotificationService } from 'src/app/shared/services/toastr-notification.service';
 
 @Component({
   selector: 'app-criar-usuario',
@@ -25,7 +26,7 @@ export class ComponenteCriarUsuario implements OnInit {
         private _usuarioService: UsuarioService,
         private _router: Router,
         private modalMdbService: MdbModalService,
-        private toastr: ToastrService
+        private toastr: ToastrNotificationService
     ) {}
 
     ngOnInit(): void {
@@ -68,31 +69,6 @@ export class ComponenteCriarUsuario implements OnInit {
         }
     }
 
-    showAlert(type: string) {
-        const from = 'top'
-        const align = 'right'
-
-        if(type == 'error') {
-            this.toastr.error('<span class="now-ui-icons tim-icons icon-alert-circle-exc"></span> Não foi possível fazer o cadastro </b> - Por favor tente novamente mais tarde!', '', {
-                timeOut: 8000,
-                enableHtml: true,
-                closeButton: true,
-                toastClass: "alert alert-danger alert-with-icon",
-                positionClass: 'toast-' + from + '-' +  align
-            });
-        }
-
-        if(type == 'success') {
-            this.toastr.success('<span class="now-ui-icons ui-1_check"></span> Cadastro realizado com sucesso </b> - Veja as informações cadastradas abaixo!', '', {
-                timeOut: 8000,
-                enableHtml: true,
-                closeButton: true,
-                toastClass: "alert alert-success alert-with-icon",
-                positionClass: 'toast-' + from + '-' +  align
-            });
-        }
-    }
-
     salvarCadastro() {
         //if(!this.form.invalid) return;
 
@@ -108,12 +84,12 @@ export class ComponenteCriarUsuario implements OnInit {
 
         return this._usuarioService.Salvar(usuarioData).subscribe({
             next: () => {
-                this.showAlert('success')
+                this.toastr.success()
                 this._router.navigate(["/usuario/listar"])
             },
             error: (err: any) => {
                 console.log(err)
-                this.showAlert('error')
+                this.toastr.error()
             }
         })
     }
