@@ -27,50 +27,22 @@ import { LocalStorageService } from '../services/localStorage.service';
     canActivate(_route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
     {
-        // const usuarioLogado = this.authService.usuarioLogadoSubject.getValue();
-        // const tokenAcesso = this.authService.getTokenAcesso;
-        if (
-            !this.authService.isLogged() ||
-            this.jwtService.isTokenExpired() ||
-            (this.authService.getUserSub() ?? 0) > 0)
+        const usuarioLogado = this.authService.usuarioLogadoSubject.getValue();
+        const tokenAcesso = this.authService.isTokenValid;
+        const isLogged = this.authService.isLoggedIn
+
+        if (isLogged && usuarioLogado.sub && tokenAcesso)
         {
-            //     if (_route.data['authNecessaria'] == false) {
-            //         this._router.navigate(["/auth/login"],
-            //             { queryParams: { returnUrl: state.url } }
-            //         );
-            //         return false;
-            //     }) {
-            // if (this.jwtService.isTokenExpired())
-            // {
-            //     return this._router.navigate(["/auth/login"]);
-            // }
-            this._router.navigate(['/auth/login'], { queryParams: { returnUrl: state.url } });
-            return false
+            console.log(tokenAcesso)
+            if (this.jwtService.isTokenExpired())
+            {
+                this._router.navigate(["/auth/login"], { queryParams: { returnUrl: state.url } });
+                return false
+            }
+            return true
         }
 
-        return true;
-
-        // this.authService.getTokenAcesso();
-        // const usuarioLogado = this.authService.usuarioLogadoSubject.getValue();
-
-        // if ((usuarioLogado?.exp ?? 0) > 0) {
-        //     if (_route.data['authNecessaria'] == false) {
-        //         this._router.navigate(["/auth/login"],
-        //             { queryParams: { returnUrl: state.url } }
-        //         );
-        //         return false;
-        //     }
-
-        //     return true;
-        // }
-        // else {
-        //     if (_route.data['authNecessaria'] == true) {
-        //         this._router.navigate(["/auth/login"],
-        //             { queryParams: { returnUrl: state.url } }
-        //         );
-        //         return false;
-        //     }
-        //     return true;
-        // }
+        this._router.navigate(['/auth/login'], { queryParams: { returnUrl: state.url } });
+        return false;
     }
 }

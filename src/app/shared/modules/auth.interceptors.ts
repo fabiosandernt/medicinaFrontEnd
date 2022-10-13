@@ -12,39 +12,24 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     constructor(private jwtService: JWTService, private authService: AuthService) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const usuarioLogado = this.authService.isLoggedIn;
+        const tokenAcesso = this.authService.isTokenValid;
 
-        if(this.authService.isLogged()) {
+        const isLoggedIn = usuarioLogado && tokenAcesso;
+
+        const isApiUrl = request.url.startsWith(environment.apiUrl);
+
+        if (isLoggedIn && isApiUrl) {
             request = request.clone({
-                headers: request.headers
-                .set('Authorization', `bearer ${this.jwtService.getToken()}`)
-                .set('content-type', 'application/json'),
-                url: environment.apiUrl + request.url
+                setHeaders: {
+                    Authorization: `Bearer ${tokenAcesso}`,
+                    'Content-type': 'application/json'
+                }
             });
         }
 
         return next.handle(request);
     }
-
-    // intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    //     // add auth header with jwt if user is logged in and request is to the api url
-    //     const usuarioLogado = this.authService.isLoggedIn;
-    //     const tokenAcesso = this.authService.getTokenAcesso;
-
-    //     const isLoggedIn = usuarioLogado && tokenAcesso;
-
-    //     const isApiUrl = request.url.startsWith(environment.apiUrl);
-
-    //     if (isLoggedIn && isApiUrl) {
-    //         request = request.clone({
-    //             setHeaders: {
-    //                 Authorization: `Bearer ${tokenAcesso}`,
-    //                 'Content-type': 'application/json'
-    //             }
-    //         });
-    //     }
-
-    //     return next.handle(request);
-    // }
 }
 
 export const httpInterceptorProviders = [

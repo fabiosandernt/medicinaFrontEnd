@@ -99,49 +99,17 @@ export class ComponenteLogin implements OnInit {
             password: formData.senha
         }
 
-        // this.authService.login(loginData).subscribe((data: any) => {
-        //     if(data) this._router.navigate(['/empresa/listar'])
-        //     else this.showAlert()
-        // })
-
-        // this.loginService.Login({...this.form.value})
-        //     .subscribe(result => {
-        //         this.userAuthService.saveToken(result.data);
-        //         this.router.navigate(['dashboard']);
-        //     },
-        //     err => {
-        //         console.log(err);
-        //         alert("Deu erro no login");
-        //     }
-        // );
-
         this.loginService.Login(loginData).subscribe({
             next: (result) => {
-                this.authService.saveToken(result);
+                this.authService.login(result)
+
                 this.showAlert('success')
-                this._router.navigate(['']);
+                return this._router.navigate(['']);
             },
             error: (err) => {
-                console.log(err)
+                console.log("ErrorLogin:", err)
                 this.showAlert('error')
             },
         });
-
-        // return this.loginService.Login(loginData).subscribe({
-        //     next: (result) => {
-        //         // const token: IJWT = result as IJWT;
-        //         this.jwtService.setToken(result);
-        //         this.authService.authenticatedUser()
-
-        //         this._router.navigate(['/empresa/listar'])
-
-        //         return true;
-        //     },
-        //     error: (err) => {
-        //         console.log(err.error.message)
-        //         this.showAlert();
-        //         return false;
-        //     },
-        // })
     };
 }

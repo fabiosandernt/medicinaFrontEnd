@@ -3,56 +3,15 @@ import jwt_decode from 'jwt-decode';
 import { IJWT } from '../models/jwt';
 import { LocalStorageService } from './localStorage.service'
 
-const KEY = 'SSID';
-
 @Injectable({
     providedIn:'root'
 })
 export class JWTService {
 
-    // jwtToken: string;
-    // decodedToken: IJWT;
+    jwtToken: string;
+    decodedToken: IJWT;
 
-    // constructor(private localStorage: LocalStorageService) {}
-
-    // setToken(token: string): void {
-    //     if (token) this.jwtToken = token;
-
-    //     this.localStorage.set('SSID',   JSON.stringify(this.jwtToken));
-    // }
-
-    // decodeToken() {
-    //     if (this.jwtToken) {
-    //         return this.decodedToken = jwt_decode(this.jwtToken);
-    //     }
-    // }
-
-    // // getName() {
-    // //     this.decodeToken();
-    // //     return this.decodedToken ? this.decodedToken.name : null;
-    // // }
-
-    // // getEmail() {
-    // //     this.decodeToken();
-    // //     return this.decodedToken ? this.decodedToken.email : null;
-    // // }
-
-    // // getTipoUsuario() {
-    // //     this.decodeToken();
-    // //     return this.decodedToken ? this.decodedToken.tipoUsuario : null;
-    // // }
-
-    // getExpiryTime() {
-    //     this.decodeToken();
-    //     return this.decodedToken ? this.decodedToken.exp : null;
-    // }
-
-    // isTokenExpired(): boolean {
-    //     const expiryTime: number = Number(this.decodedToken.exp);
-
-    //     if (expiryTime) return ((1000 * expiryTime) - (new Date()).getTime()) < 5000;
-    //     else return false;
-    // }
+    constructor(private localStorage: LocalStorageService) {}
 
     private tokenModel: IJWT;
 
@@ -61,17 +20,23 @@ export class JWTService {
     }
 
     setToken(token: string) {
-        if(this.getToken()) this.removeToken()
+        if (token) this.jwtToken = token;
 
-        window.localStorage.setItem(KEY, token);
+        this.localStorage.set(token);
+    }
+
+    decodeToken() {
+        if (this.jwtToken) {
+            return this.decodedToken = jwt_decode(this.jwtToken);
+        }
     }
 
     getToken() {
-        return window.localStorage.getItem(KEY);
+        return this.localStorage.get()
     }
 
     removeToken() {
-        window.localStorage.removeItem(KEY);
+        this.localStorage.remove()
     }
 
     getTokenEncoded(): IJWT {

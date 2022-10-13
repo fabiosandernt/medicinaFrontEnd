@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 
+const keyStorage = "SSID"
+
 @Injectable({
     providedIn:'root'
 })
 export class LocalStorageService {
 
-    set(key: string, value: string) {
-        localStorage.setItem(key, value);
+    set(value: string) {
+        localStorage.setItem(keyStorage, value);
     }
 
-    get(key: string) {
-        return localStorage.getItem(key);
+    get() {
+        return localStorage.getItem(keyStorage);
     }
 
-    remove(key: string) {
-        localStorage.removeItem(key);
+    remove() {
+        localStorage.removeItem(keyStorage);
     }
 }

@@ -1,112 +1,61 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
-import { BehaviorSubject, Observable, of } from "rxjs";
-import { catchError, map } from "rxjs/operators";
-import { Usuario } from "../models/usuario";
+import { BehaviorSubject, of } from "rxjs";
 import { JWTService } from "./jwtToken.service";
-import { LocalStorageService } from "./localStorage.service";
 
-import { environment } from 'src/environments/environment.prod';
-import jwtDecode from "jwt-decode";
 import { IJWT } from "../models/jwt";
-
 import { JwtHelperService } from '@auth0/angular-jwt';
-
 
 @Injectable({
     providedIn:'root'
 })
 export class AuthService {
-    // usuarioLogadoSubject = new BehaviorSubject<IJWT | null>(null);
-    // //public usuarioAtual: Observable<IJWT>;
+    usuarioLogadoSubject = new BehaviorSubject<IJWT | null>(null);
 
-    // jwtHelperService: JwtHelperService = new JwtHelperService();
+    jwtHelperService: JwtHelperService = new JwtHelperService();
 
-    // constructor(
-    //     private http: HttpClient,
-    //     private localStorageService: LocalStorageService,
-    //     private jwtService: JWTService,
-    //     private _router: Router
-    // ) {
-    //     // this.usuarioAtualSubject = new BehaviorSubject<Usuario>(
-    //     //     JSON.parse(this.localStorageService.get('SSID'))
-    //     // );
+    constructor(
+        private jwtService: JWTService,
+    ) {}
 
-    //     // this.usuarioAtual = this.usuarioAtualSubject.asObservable();
-    // }
+    public get isLoggedIn(): IJWT {
+        return this.usuarioLogadoSubject.getValue();
+    }
 
-    // public get isLoggedIn(): IJWT {
-    //     return this.usuarioLogadoSubject.value;
-    // }
+    login(data: any) {
+        try {
+            this.jwtService.setToken(data);
 
-    // login(data: any) {
-    //     return this.http.post(`${environment.apiUrl}/Authentication`, data).pipe(
-    //     map((result: any) => {
-    //         this.jwtService.setToken(result);
-    //         //localStorage.setItem('SSID', JSON.stringify(token));
+            const tokenDecoded = this.jwtService.decodeToken() as IJWT;
 
-    //         const tokenDecoded = this.jwtService.decodeToken() as IJWT;
+            this.usuarioLogadoSubject.next(tokenDecoded);
 
-    //         this.usuarioLogadoSubject.next(tokenDecoded);
-    //         return true;
-    //     }),
-    //     catchError((error) => {
-    //         console.log('CatchError --> ', error);
-    //         return of(false);
-    //     }))
-    // }
+            return true;
+        }
+        catch(error) {
+            console.log('CatchError --> ', error);
+            return of(false);
+        }
+    }
 
-    // getTokenAcesso(): string {
-    //     var localStorageToken = this.localStorageService.get('SSID');
+    isTokenValid(): string {
+        var localStorageToken = this.jwtService.getToken();
 
-    //     if (localStorageToken) {
-    //         var token = JSON.parse(localStorageToken);
+        if (localStorageToken) {
+            var isTokenExpired = this.jwtService.isTokenExpired();
 
-    //         var isTokenExpired = this.jwtService.isTokenExpired();
+            if (isTokenExpired) {
+                this.usuarioLogadoSubject.next(null);
+                return '';
+            }
 
-    //         if (isTokenExpired) {
-    //             this.usuarioLogadoSubject.next(null);
-    //             return '';
-    //         }
-    //         var usuarioInfo = this.jwtService.decodeToken() as IJWT;
+            return localStorageToken;
+        }
 
-    //         this.usuarioLogadoSubject.next(usuarioInfo);
-
-    //         return token;
-    //     }
-
-    //     return '';
-    // }
-
-    constructor(private jwtService: JWTService) {}
+        return '';
+    }
 
     logout() {
-        this.jwtService.removeToken();
+        this.jwtService.removeToken()
+        this.usuarioLogadoSubject.next(null);
     }
-
-    isLogged() {
-        return this.jwtService.hasToken();
-    }
-
-    getUserEmail() {
-        return this.jwtService.getTokenEncoded().email;
-    }
-
-    getUserSub() {
-        return this.jwtService.getTokenEncoded().sub;
-    }
-
-    // getUserRole() {
-    //     return this.jwtService.getTokenEncoded().role;
-    // }
-
-    saveToken(token: string) {
-        this.jwtService.setToken(token);
-    }
-
-    // logout() {
-    //     localStorage.removeItem('SSID');
-    //     this.usuarioLogadoSubject.next(null);
-    // }
 }
