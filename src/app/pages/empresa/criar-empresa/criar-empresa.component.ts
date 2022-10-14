@@ -91,7 +91,7 @@ export class ComponenteCriarEmpresa implements OnInit {
             razaoSocial: formData.razaoSocial,
             celular: formData.celular,
             telefone: formData.telefone,
-            risco: formData.risco,
+            risco: Number(formData.risco),
             endereco: formData.endereco,
             email: {
                 valor: formData.email
