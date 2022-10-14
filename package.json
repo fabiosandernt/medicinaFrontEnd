@@ -94,6 +94,9 @@
           "jest-preset-angular/build/StripStylesTransformer"
         ]
       }
+    },
+    "options": {
+        "emitWarning": true
     }
   }
 }
