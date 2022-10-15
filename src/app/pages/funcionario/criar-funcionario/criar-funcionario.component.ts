@@ -118,8 +118,7 @@ export class ComponenteCriarFuncionario implements OnInit {
                 this.router.navigate(["/empresa/listar"])
             },
             error: (err: any) => {
-                console.log(err)
-                this.toastr.error()
+                this.toastr.errorMessageBackEnd(err.error.errorMessage)
             }
         })
     }

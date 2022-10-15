@@ -88,8 +88,7 @@ export class ComponenteCriarUsuario implements OnInit {
                 this._router.navigate(["/usuario/listar"])
             },
             error: (err: any) => {
-                console.log(err)
-                this.toastr.error()
+                this.toastr.errorMessageBackEnd(err.error.errorMessage)
             }
         })
     }

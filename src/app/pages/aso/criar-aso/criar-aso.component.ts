@@ -118,10 +118,8 @@ export class ComponenteCriarASO implements OnInit {
             tipoExame: formData.exame,
             dataExame: formData.dataExame,
             cpf: formData.cpf,
-            anexoImagem: this.imagemSrc,
+            anexoImagem: this.imagemSrc
         }
-
-        console.log(asoData)
 
         return this._asoService.Salvar(asoData).subscribe({
             next: () => {
@@ -129,8 +127,7 @@ export class ComponenteCriarASO implements OnInit {
                 this._router.navigate(["/aso/listar"])
             },
             error: (err: any) => {
-                console.log(err)
-                this.toastr.error()
+                this.toastr.errorMessageBackEnd(err.error.errorMessage)
             }
         })
     }
