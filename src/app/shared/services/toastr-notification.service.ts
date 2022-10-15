@@ -30,6 +30,20 @@ export class ToastrNotificationService {
         });
     }
 
+    errorMessageBackEnd(message: string) {
+        if(!message) {
+            message = "Por favor tente novamente mais tarde!"
+        }
+
+        this.toastrService.error(`<span class="now-ui-icons tim-icons icon-alert-circle-exc"></span> Não foi possível fazer o cadastro </b> - ${message}`, '', {
+            timeOut: 6000,
+            enableHtml: true,
+            closeButton: true,
+            toastClass: "alert alert-danger alert-with-icon",
+            positionClass: 'toast-' + this.from + '-' +  this.align
+        });
+    }
+
     successLogin() {
         this.toastrService.success('<span class="now-ui-icons ui-1_check"></span> Login bem sucedido </b> - Bem vindo(a)!', '', {
             timeOut: 6000,

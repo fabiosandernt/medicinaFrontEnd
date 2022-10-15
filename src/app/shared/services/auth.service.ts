@@ -17,8 +17,12 @@ export class AuthService {
         private jwtService: JWTService,
     ) {}
 
-    public get isLoggedIn(): IJWT {
-        return this.usuarioLogadoSubject.getValue();
+    public get isLoggedIn(): boolean {
+        if(this.usuarioLogadoSubject.getValue()){
+            return true
+        }
+
+        return false
     }
 
     login(data: any) {

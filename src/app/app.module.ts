@@ -20,6 +20,20 @@ import { httpInterceptorProviders } from './shared/modules/auth.interceptors';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal'
 
 import { MatDialogModule } from "@angular/material/dialog";
+import { AuthService } from './shared/services/auth.service';
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+
+export function jwtOptionFactor(authService: AuthService){
+    return {
+        tokenGetter:() => {
+            return authService.isTokenValid();
+        },
+        allowedDomains:["localhost:4000"],
+        disallowedRoutes:[
+            "http://localhost:4000/auth/login"
+        ]
+    }
+}
 
 @NgModule({
     imports: [
@@ -33,7 +47,15 @@ import { MatDialogModule } from "@angular/material/dialog";
         ToastrModule.forRoot(),
         CommonModule,
         MdbModalModule,
-        MatDialogModule
+        MatDialogModule,
+        JwtModule.forRoot
+        ({
+            jwtOptionsProvider:{
+                provide: JWT_OPTIONS,
+                useFactory: jwtOptionFactor,
+                deps:[AuthService]
+            }
+        })
     ],
     declarations: [
         AppComponent,
@@ -48,4 +70,5 @@ import { MatDialogModule } from "@angular/material/dialog";
     ],
     bootstrap: [AppComponent]
 })
+
 export class AppModule { }
